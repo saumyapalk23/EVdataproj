@@ -121,6 +121,12 @@ def shares_fmt(x):
     return "–" if pd.isna(x) else f"{x:,.0f}"
 
 
+def escape_markdown_dollars(text):
+    """Escape literal $ so Streamlit's markdown renderer doesn't
+    interpret a pair of them as a LaTeX math block."""
+    return "" if pd.isna(text) else str(text).replace("$", "\\$")
+
+
 def build_display_table(rounds_df):
     """Turn the raw financing_rounds columns into the human-readable table
     shown in the Add/Update Round tab (formatted currency/percent strings,
@@ -200,8 +206,8 @@ def tab_add_update_round(conn, company_id, company_name):
             for _, r in log_df.iterrows():
                 badge = "🔴 Open" if r["status"] == "Open" else "✅ Resolved"
                 st.markdown(f"**{badge}** — {r['round_name'] or '(dataset-wide)'}")
-                st.caption(f"Issue: {r['issue']}")
-                st.caption(f"Resolution: {r['resolution']}")
+                st.caption(f"Issue: {escape_markdown_dollars(r['issue'])}")
+                st.caption(f"Resolution: {escape_markdown_dollars(r['resolution'])}")
                 st.divider()
 
     st.divider()
@@ -375,8 +381,8 @@ def tab_add_update_round(conn, company_id, company_name):
             tolerance = max(1.0, 0.005 * expected_post)
             if abs(post_money - expected_post) > tolerance:
                 warnings.append(
-                    f"Post-money (${post_money:,.0f}) does not reconcile with "
-                    f"pre-money + amount raised (${expected_post:,.0f}). Proceeding "
+                    f"Post-money (\\${post_money:,.0f}) does not reconcile with "
+                    f"pre-money + amount raised (\\${expected_post:,.0f}). Proceeding "
                     f"with the value you entered — please confirm this is intentional."
                 )
 
