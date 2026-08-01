@@ -1,9 +1,4 @@
--- MySQL dump for the "portfolio" database -- open this in
--- DataGrip, or it's run directly against MySQL by this script.
--- Safe to re-run: DROP DATABASE + CREATE DATABASE up top means
--- the whole script always starts from a clean slate, so the
--- per-table DROP/CREATE and FK constraints below never conflict
--- with a prior run.
+-- Portfolio database generated with clean data by builder script
 
 DROP DATABASE IF EXISTS portfolio;
 CREATE DATABASE portfolio;
