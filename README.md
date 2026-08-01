@@ -57,7 +57,10 @@ Three tables in the `portfolio` MySQL database:
   `source_confidence` and `is_estimate` flags and a free-text `source_note`.
 - **data_quality_log** — every judgment call made while cleaning the data,
   tagged `Resolved` or `Open`, with the issue and how (or whether) it was
-  resolved.
+  resolved. Links to `companies`/`financing_rounds` via nullable
+  `company_id`/`round_id` foreign keys (kept alongside the original
+  `company_name`/`round_name` text columns for display) — see "Data issues
+  found" below.
 
 Why this shape:
 - **One row per round, not one row per company.** The raw sheets already
@@ -103,6 +106,16 @@ Resolved with a clear basis:
   closed (Nimbus: "TBD 2027" / IC guidance only; Verdant: notes say the
   close date slipped a quarter) — both set to `round_status = Planned`
   with no `date_closed`, rather than treated as confirmed rounds.
+- **`data_quality_log` only linked to companies/rounds by free-text
+  `company_name`/`round_name`**, so it showed up disconnected in DataGrip's
+  ER diagram and a company/round rename would have silently broken the
+  association. Fixed by adding nullable `company_id`/`round_id` foreign keys
+  (`build_portfolio_db.py`'s `add_issue()` now takes an explicit `round_id`
+  from the just-inserted round, and looks up `company_id` from the same
+  dict used elsewhere, rather than matching on names after the fact). The
+  text columns are kept for display, and both FKs are nullable since
+  dataset-wide "All Companies" entries have no single company/round to
+  point to.
 
 Left open (flagged, not guessed):
 - **Nimbus "Series A-2" vs "Series A2"**, both dated 5/22/2023 with different
@@ -135,6 +148,10 @@ Left open (flagged, not guessed):
 - Editing an existing round in the app currently doesn't clear/update
   `source_confidence` or `is_estimate` on save — a flagged row stays flagged
   even after the edit resolves the underlying issue. Worth fixing.
+- The Add/Edit Round form's input validation could handle more edge cases —
+  e.g. very large dollar amounts (overflow/precision), leading/trailing
+  whitespace in text fields, and other malformed input that isn't exercised
+  by the current dataset.
 
 ## AI assistant use
 

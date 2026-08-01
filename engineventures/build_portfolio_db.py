@@ -120,6 +120,14 @@ def assign_round_orders(rows, key_fn):
     return orders
 
 
+# The fixed list of portfolio companies, in the order they'll get
+# AUTO_INCREMENT ids (1..5) when inserted into MySQL below -- this dict lets
+# add_issue() (and the SQL-dump generation further down) resolve each
+# company_name to its company_id without touching a database.
+COMPANIES = ["Nimbus Robotics", "Verdant Bio", "Fathom Analytics",
+             "Ridgeline Materials", "Halcyon Health"]
+company_id = {name: idx for idx, name in enumerate(COMPANIES, start=1)}
+
 # In-memory accumulators populated by the per-company blocks below, then
 # bulk-inserted into SQLite in the "Write to SQLite" section further down.
 rounds = []          # final financing_rounds rows (dicts)
@@ -129,7 +137,10 @@ log = []             # final data_quality_log rows (dicts)
 def add_round(company, round_name, round_order, date_closed, status, rtype,
               amount, pre, post, price, shares, own_new, own_fund,
               confidence, is_estimate, note):
-    """Append one financing_rounds row (as a dict) to the `rounds` accumulator."""
+    """Append one financing_rounds row (as a dict) to the `rounds` accumulator.
+    Returns the round's round_id (its 1-based position, matching the id it
+    will be assigned during SQL-dump generation below) so a caller can pass
+    it to add_issue() and link a log entry to this exact round."""
     rounds.append(dict(
         company_name=company, round_name=round_name, round_order=round_order,
         date_closed=date_closed, round_status=status, round_type=rtype,
@@ -138,14 +149,22 @@ def add_round(company, round_name, round_order, date_closed, status, rtype,
         ownership_pct_new_investor=own_new, ownership_pct_fund_position=own_fund,
         source_confidence=confidence, is_estimate=is_estimate, source_note=note,
     ))
+    return len(rounds)
 
 
-def add_issue(company, round_name, issue, resolution, status):
+def add_issue(company, round_name, issue, resolution, status, round_id=None):
     """Append one data_quality_log row (as a dict) to the `log` accumulator.
     This is the audit trail explaining every non-obvious judgment call made
-    while normalizing the raw workbook data below."""
+    while normalizing the raw workbook data below.
+
+    company_id is resolved from the COMPANIES lookup above (None for the
+    synthetic "All Companies" dataset-wide rows, which have no single
+    company to point to). round_id must be passed in explicitly -- the value
+    just returned by add_round() -- since round_name alone doesn't
+    disambiguate cases like Nimbus's duplicate/conflicting Series A2 rows."""
     log.append(dict(company_name=company, round_name=round_name, issue=issue,
-                     resolution=resolution, status=status, logged_at=NOW))
+                     resolution=resolution, status=status, logged_at=NOW,
+                     company_id=company_id.get(company), round_id=round_id))
 
 
 # ---------------------------------------------------------------------------
@@ -158,6 +177,10 @@ raw = extract_rows("Nimbus Robotics", header_row=1, data_rows=range(2, 9))
 orders = assign_round_orders(
     raw, lambda rec: (normalize_round_name(rec["Round"]), rec["Date"] if isinstance(rec["Date"], datetime) else None)
 )
+# round_ids of specific rows referenced by the add_issue() calls below.
+nimbus_series_b_id = None
+nimbus_series_a2_ids = []
+nimbus_bridge_note_id = None
 for rec, order in zip(raw, orders):
     name = normalize_round_name(rec["Round"])
     date_closed = parse_date(rec["Date"])
@@ -172,7 +195,8 @@ for rec, order in zip(raw, orders):
         # only IC (investment committee) guidance -- nothing has actually
         # been signed, so it's inserted as Planned/unpriced with the
         # priced-round-only fields (price/shares/ownership) left blank.
-        add_round("Nimbus Robotics", name, order, None, "Planned", rtype,
+        nimbus_series_b_id = add_round(
+                   "Nimbus Robotics", name, order, None, "Planned", rtype,
                    amount, pre, post, None, None, None, None,
                    "needs_review", 1,
                    "IC guidance only; unpriced as of last IC update per sheet "
@@ -183,18 +207,21 @@ for rec, order in zip(raw, orders):
         # both are inserted (sharing round_order) since there's no basis in
         # the source workbook to pick one as correct; each is flagged.
         alt = "4.5M raised / $55.5M post" if amount == 4_000_000 else "4.0M raised / $55.0M post"
-        add_round("Nimbus Robotics", name, order, date_closed, status, rtype,
+        nimbus_series_a2_ids.append(add_round(
+                   "Nimbus Robotics", name, order, date_closed, status, rtype,
                    amount, pre, post, price, shares, pct(amount, post), None,
                    "needs_review", 1,
                    f"Duplicate/conflicting round dated 5/22/2023 (sheet had both "
                    f"'Series A-2' and 'Series A2' labels); cross-ref: other row "
-                   f"shows ${alt}. Not reconciled -- see data_quality_log.")
+                   f"shows ${alt}. Not reconciled -- see data_quality_log."))
     else:
         # Ordinary, unambiguous round -- insert as-is with the standard
         # recomputed ownership_pct_new_investor.
-        add_round("Nimbus Robotics", name, order, date_closed, status, rtype,
+        rid = add_round("Nimbus Robotics", name, order, date_closed, status, rtype,
                    amount, pre, post, price, shares, pct(amount, post), None,
                    "confirmed", 0, "Tracker sheet, reconciled, no adjustments.")
+        if name == "Bridge Note":
+            nimbus_bridge_note_id = rid
 
 # Data-quality entries documenting the judgment calls made above, plus two
 # entries that simply cross-check the sheet against separately-supplied
@@ -205,7 +232,7 @@ add_issue("Nimbus Robotics", "Series B",
           "Set round_status='Planned', date_closed=NULL, and left "
           "price_per_share/shares_post_round/ownership columns blank; "
           "amount/pre/post-money retained as IC guidance figures (is_estimate=1).",
-          "Resolved")
+          "Resolved", round_id=nimbus_series_b_id)
 add_issue("Nimbus Robotics", "Series A2",
           "Two rows both dated 5/22/2023, one labeled 'Series A-2' ($4.0M "
           "raised, $55.0M post) and one 'Series A2' ($4.5M raised, $55.5M "
@@ -215,20 +242,20 @@ add_issue("Nimbus Robotics", "Series A2",
           "Not resolved -- inserted both rows sharing round_order, each "
           "flagged source_confidence='needs_review', is_estimate=1, with "
           "source_note cross-referencing the other row's figures.",
-          "Open")
+          "Open", round_id=nimbus_series_a2_ids[0] if nimbus_series_a2_ids else None)
 add_issue("Nimbus Robotics", "Bridge Note",
           "Portfolio Notes: 'nimbus robotics - bridge note closed 8/1/24, "
           "$2.0M, existing investors only'.",
           "Cross-checked against tracker (Bridge Note, 8/1/2024, $2.0M) -- "
           "matches exactly, no change needed.",
-          "Resolved")
+          "Resolved", round_id=nimbus_bridge_note_id)
 add_issue("Nimbus Robotics", "Series B",
           "Portfolio Notes: 'Nimbus Robotics Series B still not priced, IC "
           "guidance is ~$135M post but nothing signed'.",
           "Cross-checked against tracker -- confirms Series B is correctly "
           "represented as unpriced/Planned with ~$135M post-money guidance, "
           "no change needed.",
-          "Resolved")
+          "Resolved", round_id=nimbus_series_b_id)
 
 # ---------------------------------------------------------------------------
 # Verdant Bio (Continue Pro-Rata Participation scenario only, rows 4-7)
@@ -237,6 +264,7 @@ add_issue("Nimbus Robotics", "Series B",
 # "Continue Pro-Rata Participation" scenario -- see the sheet-structure note below.
 raw = extract_rows("Verdant Bio", header_row=3, data_rows=range(4, 8))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
+verdant_series_c_id = None
 for rec, order in zip(raw, orders):
     name = rec["Round"]
     date_closed = parse_date(rec["Date"])
@@ -248,7 +276,8 @@ for rec, order in zip(raw, orders):
         # Series C has full deal terms in the sheet but is not confirmed
         # closed, so it's recorded as Planned with the expected date moved
         # to source_note rather than date_closed.
-        add_round("Verdant Bio", name, order, None, "Planned", rtype,
+        verdant_series_c_id = add_round(
+                   "Verdant Bio", name, order, None, "Planned", rtype,
                    amount, pre, post, None, None, pct(amount, post), fund_pos,
                    "needs_review", 1,
                    "Expected/target close date 2025-04-01 per Portfolio Notes "
@@ -289,14 +318,14 @@ add_issue("Verdant Bio", "Series C",
           "close date (2025-04-01, reflecting the 'pushed to Q2 2025' "
           "update in Portfolio Notes) recorded in source_note instead of "
           "date_closed.",
-          "Resolved")
+          "Resolved", round_id=verdant_series_c_id)
 add_issue("Verdant Bio", "Series C",
           "Portfolio Notes: 'Verdant Bio Series C round pushed back a "
           "quarter, expected close now Q2 2025 not Q1'.",
           "Cross-checked against tracker date (4/1/2025, which is Q2) -- "
           "already reflects this update, no date change needed. (Status "
           "handled separately, see other Series C entry.)",
-          "Resolved")
+          "Resolved", round_id=verdant_series_c_id)
 
 # ---------------------------------------------------------------------------
 # Fathom Analytics
@@ -306,6 +335,8 @@ add_issue("Verdant Bio", "Series C",
 # is what makes that a non-issue here.
 raw = extract_rows("Fathom Analytics", header_row=1, data_rows=range(2, 6))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
+fathom_pre_seed_id = None
+fathom_series_b_id = None
 for rec, order in zip(raw, orders):
     name = rec["Round"]
     date_closed = parse_date(rec["Date"])
@@ -317,7 +348,8 @@ for rec, order in zip(raw, orders):
         # A separately-supplied note mentions a possibly-duplicate/conflicting
         # $1.2M SAFE dated the same day as this $750K row; the tracker's own
         # figure is kept as-is (not overwritten) but flagged for review.
-        add_round("Fathom Analytics", name, order, date_closed, "Closed", rtype,
+        fathom_pre_seed_id = add_round(
+                   "Fathom Analytics", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, price, None, pct(amount, post), None,
                    "needs_review", 0,
                    "Tracker's existing $750K figure retained; Portfolio "
@@ -325,9 +357,11 @@ for rec, order in zip(raw, orders):
                    "1/10/22' referencing the same date -- possible "
                    "duplicate/conflict, not applied. See data_quality_log.")
     else:
-        add_round("Fathom Analytics", name, order, date_closed, "Closed", rtype,
+        rid = add_round("Fathom Analytics", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, price, None, pct(amount, post), None,
                    "confirmed", 0, "Tracker sheet, reconciled, no adjustments.")
+        if name == "Series B":
+            fathom_series_b_id = rid
 
 add_issue("Fathom Analytics", "Pre-Seed",
           "Portfolio Notes mentions an unconfirmed 'new SAFE, $1.2M, dated "
@@ -337,13 +371,13 @@ add_issue("Fathom Analytics", "Pre-Seed",
           "Kept the tracker's existing $750K figure (not overwritten by "
           "the unconfirmed note); flagged source_confidence='needs_review' "
           "pending deal-team confirmation.",
-          "Open")
+          "Open", round_id=fathom_pre_seed_id)
 add_issue("Fathom Analytics", "Series B",
           "Portfolio Notes: 'Fathom Analytics Inc. Series B - closed June "
           "2025, $22M raised, post money ~$92M'.",
           "Cross-checked against tracker (6/18/2025, $22M raised, $92M "
           "post) -- matches, no change needed.",
-          "Resolved")
+          "Resolved", round_id=fathom_series_b_id)
 
 # ---------------------------------------------------------------------------
 # Ridgeline Materials ($000s -> multiply by 1000)
@@ -354,6 +388,7 @@ add_issue("Fathom Analytics", "Series B",
 RIDGELINE_MULT = 1000
 raw = extract_rows("Ridgeline Materials", header_row=1, data_rows=range(2, 7))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
+ridgeline_series_b_id = None
 for rec, order in zip(raw, orders):
     name = rec["Round"]
     date_closed = parse_date(rec["Date"])
@@ -375,9 +410,11 @@ for rec, order in zip(raw, orders):
     post = post * RIDGELINE_MULT if post is not None else None
     rtype = classify_round_type(name, pre)
 
-    add_round("Ridgeline Materials", name, order, date_closed, "Closed", rtype,
+    rid = add_round("Ridgeline Materials", name, order, date_closed, "Closed", rtype,
                amount, pre, post, None, None, pct(amount, post), None,
                "confirmed", 0, note)
+    if name == "Series B":
+        ridgeline_series_b_id = rid
 
 add_issue("Ridgeline Materials", None,
           "Sheet footnote states all dollar figures are in $000s, differing "
@@ -389,7 +426,7 @@ add_issue("Ridgeline Materials", "Series B",
           "Amount Raised entered as -22,000 (in $000s) -- both the sheet's "
           "own footnote and Portfolio Notes confirm this is a typo.",
           "Corrected to +22,000 ($22M after unit conversion) before insert.",
-          "Resolved")
+          "Resolved", round_id=ridgeline_series_b_id)
 
 # ---------------------------------------------------------------------------
 # Halcyon Health
@@ -399,6 +436,8 @@ raw = extract_rows("Halcyon Health", header_row=1, data_rows=range(2, 6))
 # so it never becomes an inserted row or consumes an order slot.
 raw = [r for r in raw if not (r["Round"] == "Series A" and r.get("Shares Post-Round") == 0)]
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
+halcyon_series_a_id = None
+halcyon_series_b_id = None
 for rec, order in zip(raw, orders):
     name = rec["Round"]
     date_closed = parse_date(rec["Date"])
@@ -414,7 +453,8 @@ for rec, order in zip(raw, orders):
         # Series A row was already filtered out above for having 0 shares);
         # still flagged as needs_review since the two rows were never
         # reconciled against each other in the source.
-        add_round("Halcyon Health", name, order, date_closed, "Closed", rtype,
+        halcyon_series_a_id = add_round(
+                   "Halcyon Health", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, shares, pct(amount, post), None,
                    "needs_review", 1,
                    "Two Series A rows existed in source (sheet footnote: "
@@ -427,7 +467,8 @@ for rec, order in zip(raw, orders):
         # Share count is broken in the source for this round too, but the
         # dollar figures are independently reliable -- left shares NULL
         # rather than guessing a value.
-        add_round("Halcyon Health", name, order, date_closed, "Closed", rtype,
+        halcyon_series_b_id = add_round(
+                   "Halcyon Health", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, None, pct(amount, post), None,
                    "confirmed", 0,
                    "shares_post_round unavailable in source (#DIV/0!); left "
@@ -447,14 +488,14 @@ add_issue("Halcyon Health", "Series A",
           "Inserted only the $9.5M row (the only one with usable share "
           "data), flagged source_confidence='needs_review', is_estimate=1. "
           "$9.0M figure preserved here for reference, not inserted as a row.",
-          "Open")
+          "Open", round_id=halcyon_series_a_id)
 add_issue("Halcyon Health", "Series B",
           "shares_post_round was 0/#DIV/0! in source (broken formula, no "
           "real share count available).",
           "Left shares_post_round and price_per_share NULL rather than "
           "estimate a value. ownership_pct_new_investor still computed "
           "from amount_raised_usd/post_money_usd, both of which are reliable.",
-          "Resolved")
+          "Resolved", round_id=halcyon_series_b_id)
 
 # ---------------------------------------------------------------------------
 # Dataset-wide issues (span multiple companies -> single consolidated row)
@@ -482,17 +523,6 @@ add_issue("All Companies", None,
           "relevant data_quality_log entries above as context rather than "
           "inserted as rows.",
           "Resolved")
-
-# ---------------------------------------------------------------------------
-# Company id lookup
-# ---------------------------------------------------------------------------
-# The fixed list of portfolio companies, in the order they'll get
-# AUTO_INCREMENT ids (1..5) when inserted into MySQL below -- this dict lets
-# the rest of this script (and the SQL-dump generation further down) resolve
-# each round's company_id without touching a database.
-COMPANIES = ["Nimbus Robotics", "Verdant Bio", "Fathom Analytics",
-             "Ridgeline Materials", "Halcyon Health"]
-company_id = {name: idx for idx, name in enumerate(COMPANIES, start=1)}
 
 # ---------------------------------------------------------------------------
 # Write MySQL-flavored SQL dump (for DataGrip, and executed against MySQL below)
@@ -562,10 +592,18 @@ CREATE TABLE IF NOT EXISTS data_quality_log (
     issue_id INT AUTO_INCREMENT PRIMARY KEY,
     company_name VARCHAR(255) NOT NULL,
     round_name VARCHAR(255),
+    company_id INT NULL,
+    round_id INT NULL,
     issue TEXT NOT NULL,
     resolution TEXT NOT NULL,
     status VARCHAR(20) NOT NULL CHECK (status IN ('Resolved', 'Open')),
-    logged_at VARCHAR(32) NOT NULL
+    logged_at VARCHAR(32) NOT NULL,
+    CONSTRAINT fk_dataQualityLogCompany FOREIGN KEY (company_id) REFERENCES companies (company_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    CONSTRAINT fk_dataQualityLogRound FOREIGN KEY (round_id) REFERENCES financing_rounds (round_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
 );
 """.strip()
 
@@ -605,11 +643,15 @@ with open(SQL_DUMP_PATH, "w", encoding="utf-8") as f:
         for round_id, r in enumerate(rounds, start=1)
     ) + ";\n\n")
 
-    issue_columns = "issue_id, company_name, round_name, issue, resolution, status, logged_at"
+    issue_columns = (
+        "issue_id, company_name, round_name, company_id, round_id, "
+        "issue, resolution, status, logged_at"
+    )
     f.write(f"INSERT INTO data_quality_log ({issue_columns}) VALUES\n")
     f.write(",\n".join(
         "    (" + ", ".join([
             str(issue_id), sql_str(i["company_name"]), sql_str(i["round_name"]),
+            sql_str(i["company_id"]), sql_str(i["round_id"]),
             sql_str(i["issue"]), sql_str(i["resolution"]), sql_str(i["status"]), sql_str(NOW),
         ]) + ")"
         for issue_id, i in enumerate(log, start=1)

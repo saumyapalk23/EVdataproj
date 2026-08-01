@@ -61,19 +61,22 @@ def load_rounds(conn, company_id):
     return df
 
 
-def load_quality_log(conn, company_name=None):
+def load_quality_log(conn, company_id=None):
     """Return data-quality log entries.
 
-    With no company_name, returns the full log (used by the Data Quality tab).
-    With a company_name, returns that company's entries plus any dataset-wide
-    ("All Companies") entries, so global caveats surface on every company page.
+    With no company_id, returns the full log (used by the Data Quality tab).
+    With a company_id, returns that company's entries plus any dataset-wide
+    entries (company_id IS NULL -- the synthetic "All Companies" rows), so
+    global caveats surface on every company page. Joins on company_id/round_id
+    rather than matching company_name/round_name text, but still returns
+    those text columns for display.
     """
-    if company_name is None:
+    if company_id is None:
         return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
     return pd.read_sql(
-        "SELECT * FROM data_quality_log WHERE company_name = %s OR company_name = 'All Companies' "
+        "SELECT * FROM data_quality_log WHERE company_id = %s OR company_id IS NULL "
         "ORDER BY issue_id",
-        conn, params=(company_name,),
+        conn, params=(company_id,),
     )
 
 
@@ -190,7 +193,7 @@ def tab_add_update_round(conn, company_id, company_name):
         )
 
     # --- Data quality notes relevant to this company ----------------- #
-    log_df = load_quality_log(conn, company_name)
+    log_df = load_quality_log(conn, company_id)
     if not log_df.empty:
         open_count = (log_df["status"] == "Open").sum()
         with st.expander(f"⚠️ Data quality notes for {company_name} ({len(log_df)} total, {open_count} open)"):
@@ -682,7 +685,7 @@ def tab_exit_assumptions(conn):
 
     # Only "Open" data-quality issues matter here — resolved ones don't need
     # a caveat in the assumptions writeup below.
-    open_issues = load_quality_log(conn, "Fathom Analytics")
+    open_issues = load_quality_log(conn, fathom_id)
     open_issues = open_issues[open_issues["status"] == "Open"]
 
     # Explanation of how Engine's ownership baseline was derived, phrased
