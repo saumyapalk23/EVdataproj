@@ -815,7 +815,7 @@ def tab_exit_assumptions(conn):
 def tab_data_quality(conn):
     """Tab listing every data-quality log entry across all companies, with
     a status filter and summary counts."""
-    st.subheader("Data Quality Log — all companies")
+    st.subheader("Data Status Log — all companies")
     log_df = load_quality_log(conn)
     open_count = (log_df["status"] == "Open").sum()
     resolved_count = (log_df["status"] == "Resolved").sum()
@@ -856,7 +856,7 @@ def main():
     tab_labels = ["Add / Update Round", "Model Future Round"]
     if show_exit_assumptions:
         tab_labels.append("Exit Assumptions")
-    tab_labels.append("Data Quality")
+    tab_labels.append("Data Status Log")
 
     tabs = st.tabs(tab_labels)
 
