@@ -169,6 +169,14 @@ def tab_add_update_round(conn, company_id, company_name):
     new one or edit an existing one, with validation before writing to the DB."""
     st.subheader(f"Funding rounds — {company_name}")
 
+    # A save just above may have queued warning/success messages into
+    # session_state (see the bottom of this function) because st.rerun()
+    # there would otherwise wipe them before they're visible for more than
+    # an instant. Show them now, once, so they stay on screen until the
+    # user's next interaction reruns the page.
+    for level, text in st.session_state.pop("round_save_messages", []):
+        getattr(st, level)(text)
+
     # --- Existing rounds table -------------------------------------- #
     rounds_df = load_rounds(conn, company_id)
     display_df = build_display_table(rounds_df)
@@ -216,6 +224,31 @@ def tab_add_update_round(conn, company_id, company_name):
         chosen_label = st.selectbox("Select round to edit", list(labels.values()), key="edit_select")
         editing_round_id = [rid for rid, lbl in labels.items() if lbl == chosen_label][0]
         prefill = rounds_df[rounds_df.round_id == editing_round_id].iloc[0].to_dict()
+
+        # --- Delete, gated behind an explicit confirmation checkbox so a
+        # stray click can't silently destroy a round (there's no undo). ---
+        with st.expander(f"🗑️ Delete '{prefill['round_name']}'"):
+            st.warning(
+                f"This permanently deletes **{prefill['round_name']}** "
+                f"({prefill.get('date_closed') or 'Planned'}) for {company_name}. "
+                "This can't be undone."
+            )
+            confirm_delete = st.checkbox(
+                "Yes, permanently delete this round.",
+                key=f"delete_confirm_{editing_round_id}",
+            )
+            if st.button(
+                "Delete round", type="primary", disabled=not confirm_delete,
+                key=f"delete_btn_{editing_round_id}",
+            ):
+                cur = conn.cursor()
+                cur.execute("DELETE FROM financing_rounds WHERE round_id = %s", (editing_round_id,))
+                renumber_rounds(conn, company_id)
+                conn.commit()
+                st.session_state["round_save_messages"] = [
+                    ("success", f"Deleted '{prefill['round_name']}'.")
+                ]
+                st.rerun()
 
     # Unique key suffix so widget state doesn't leak between companies/rounds
     # when Streamlit reruns the script (e.g. switching companies or the round
@@ -354,9 +387,11 @@ def tab_add_update_round(conn, company_id, company_name):
             st.error(e)
         return
 
-    # Warnings are shown but don't block the save.
-    for w in warnings:
-        st.warning(w)
+    # Warnings don't block the save, but we can't just st.warning() them here
+    # -- st.rerun() below wipes the page before they'd be visible for more
+    # than an instant. Queue them in session_state instead so they survive
+    # the rerun and get shown (once) at the top of the tab.
+    pending_messages = [("warning", w) for w in warnings]
 
     # ------------------------------------------------------------------ #
     # Compute derived fields and write.
@@ -416,7 +451,8 @@ def tab_add_update_round(conn, company_id, company_name):
     # the ordering), commit, confirm, and rerun so the table above refreshes.
     renumber_rounds(conn, company_id)
     conn.commit()
-    st.success(f"Saved '{round_name}'.")
+    pending_messages.append(("success", f"Saved '{round_name}'."))
+    st.session_state["round_save_messages"] = pending_messages
     st.rerun()
 
 
@@ -689,7 +725,7 @@ def tab_exit_assumptions(conn):
   refresh, or transaction costs/carry are modeled.
 - **No IRR on actual cash flows**: Engine's real investment amount/timing per
   round isn't tracked separately from each round's total, so we show an
-  implied **valuation CAGR** (how fast Fathom's valuation would need to
+  implied **valuation compound annual growth rate** (how fast Fathom's valuation would need to
   compound to hit the assumed exit number) rather than a true IRR on Engine's
   cash-in/cash-out.
 """
@@ -705,17 +741,10 @@ def tab_exit_assumptions(conn):
 
     st.divider()
     st.markdown("#### Adjust the assumptions")
-    col1, col2 = st.columns(2)
-    with col1:
-        multiple = st.number_input(
-            "Assumed exit multiple (× last post-money)", min_value=0.1,
-            value=3.0, step=0.5, key="fathom_exit_multiple",
-        )
-    with col2:
-        years = st.number_input(
-            "Assumed years to exit", min_value=1, value=4, step=1,
-            key="fathom_exit_years",
-        )
+    multiple = st.number_input(
+        "Assumed exit multiple (× last post-money)", min_value=0.1,
+        value=3.0, step=0.5, key="fathom_exit_multiple",
+    )
 
     # Exit valuation defaults to multiple × last post-money, but the user can
     # override it directly with a specific dollar figure instead.
@@ -746,26 +775,34 @@ def tab_exit_assumptions(conn):
         return
 
     engine_return = engine_pct * exit_valuation
-    # Implied CAGR: the valuation growth rate that would need to hold over
-    # `years` to go from last_post_money to exit_valuation.
-    cagr = (exit_valuation / last_post_money) ** (1 / years) - 1 if last_post_money and years else None
 
     r1, r2, r3 = st.columns(3)
     r1.metric("Engine's ownership % (baseline)", pct_fmt(engine_pct))
     if engine_is_approx:
         r1.caption("⚠️ Approximate — see assumptions above.")
     r2.metric("Assumed exit valuation", money_fmt(exit_valuation))
-    r2.caption(f"≈ {effective_multiple:.2f}x last post-money, over {years} years")
+    r2.caption(f"≈ {effective_multiple:.2f}x last post-money")
     r3.metric("Engine's straight-line return", money_fmt(engine_return))
     if engine_is_approx:
         r3.caption("⚠️ Built on the approximate ownership figure above.")
 
-    if cagr is not None:
-        st.caption(
-            f"Implied valuation CAGR to hit this exit: {cagr:.1%}/year over "
-            f"{years} years — a company-valuation growth rate, not a "
-            f"cash-flow IRR on Engine's position."
+    cagr_col1, cagr_col2 = st.columns(2)
+    with cagr_col1:
+        years = st.number_input(
+            "Years to exit (only affects the growth-rate check below — "
+            "doesn't change the return above)",
+            min_value=1, value=4, step=1, key="fathom_exit_years",
         )
+    # Implied CAGR: the valuation growth rate that would need to hold over
+    # `years` to go from last_post_money to exit_valuation.
+    cagr = (exit_valuation / last_post_money) ** (1 / years) - 1 if last_post_money and years else None
+    if cagr is not None:
+        with cagr_col2:
+            st.caption(
+                f"Implied valuation compound annual growth rate to hit this exit: {cagr:.1%}/year over "
+                f"{years} years — a company-valuation growth rate, not a "
+                f"cash-flow IRR on Engine's position."
+            )
 
 
 # --------------------------------------------------------------------- #

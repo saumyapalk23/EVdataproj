@@ -4,3 +4,1279 @@
   Local URL: http://localhost:8501
   Network URL: http://192.168.1.109:8501
 
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return "–" if pd.isna(x) else f"{x:,.0f}"
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  def renumber_rounds(conn, company_id):
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  (company_id,),
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  
+2026-07-31 21:41:08.947 Uncaught app execution
+Traceback (most recent call last):
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 841, in <module>
+    main()
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 824, in main
+    tab_add_update_round(conn, company_id, company_name)
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 399, in tab_add_update_round
+    cur.execute(
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 151, in execute
+    query = self.mogrify(query, args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 129, in mogrify
+    query = query % self._escape_args(args, conn)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 102, in _escape_args
+    return tuple(conn.literal(arg) for arg in args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 102, in <genexpr>
+    return tuple(conn.literal(arg) for arg in args)
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 530, in literal
+    return self.escape(obj, self.encoders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 523, in escape
+    return converters.escape_item(obj, self.charset, mapping=mapping)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\converters.py", line 25, in escape_item
+    val = encoder(val, mapping)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\converters.py", line 56, in escape_float
+    raise ProgrammingError("%s can not be used with MySQL" % s)
+pymysql.err.ProgrammingError: nan can not be used with MySQL
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+2026-07-31 21:41:50.887 Uncaught app execution
+Traceback (most recent call last):
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 841, in <module>
+    main()
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 824, in main
+    tab_add_update_round(conn, company_id, company_name)
+  File "C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py", line 399, in tab_add_update_round
+    cur.execute(
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 151, in execute
+    query = self.mogrify(query, args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 129, in mogrify
+    query = query % self._escape_args(args, conn)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 102, in _escape_args
+    return tuple(conn.literal(arg) for arg in args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 102, in <genexpr>
+    return tuple(conn.literal(arg) for arg in args)
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 530, in literal
+    return self.escape(obj, self.encoders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 523, in escape
+    return converters.escape_item(obj, self.charset, mapping=mapping)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\converters.py", line 25, in escape_item
+    val = encoder(val, mapping)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Saumya\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\converters.py", line 56, in escape_float
+    raise ProgrammingError("%s can not be used with MySQL" % s)
+pymysql.err.ProgrammingError: nan can not be used with MySQL
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:73: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:53: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:48: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
+C:\Users\Saumya\engineventures\EVdataproj\engineventures\app.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
