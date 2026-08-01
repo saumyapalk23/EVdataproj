@@ -1,45 +1,77 @@
 """
-Streamlit app on top of data/portfolio.db (companies / financing_rounds /
-data_quality_log). Tab 1 (Add / Update Round) is implemented; Tabs 2-3
-(Model Future Round, Exit Assumptions) are stubbed pending review of Tab 1.
+Streamlit app on top of the MySQL "portfolio" database (companies /
+financing_rounds / data_quality_log; see data/portfolio.sql for the schema).
+Tab 1 (Add / Update Round) is implemented; Tabs 2-3 (Model Future Round,
+Exit Assumptions) are stubbed pending review of Tab 1.
 """
 
-import sqlite3
 from datetime import date, datetime
 
 import pandas as pd
+import pymysql
 import streamlit as st
 
-DB_PATH = "data/portfolio.db"
+# The app reads/writes the MySQL "portfolio" database (see data/portfolio.sql
+# for the schema this expects -- run that file against MySQL, e.g. via
+# DataGrip or `mysql < data/portfolio.sql`, before starting the app).
+# Connection details come from .streamlit/secrets.toml (gitignored), under
+# an [mysql] table with host/port/user/password/database keys.
 
+# Dropdown options shared by the Add/Edit form — kept as module-level
+# constants so both the form and any validation logic reference the same list.
 ROUND_TYPES = ["SAFE", "Convertible Note", "Priced Equity"]
 ROUND_STATUSES = ["Closed", "Planned"]
 
+# Configure the browser tab title and use the full page width (rather than
+# Streamlit's default centered/narrow layout) since the tables here are wide.
 st.set_page_config(page_title="Portfolio Tracker", layout="wide")
 
 
+# --------------------------------------------------------------------- #
+# Database access helpers
+# --------------------------------------------------------------------- #
+
 def get_conn():
-    conn = sqlite3.connect(DB_PATH)
-    conn.execute("PRAGMA foreign_keys = ON")
-    return conn
+    """Open a new connection to the MySQL "portfolio" database, using
+    credentials from .streamlit/secrets.toml. Foreign key enforcement is on
+    by default in MySQL/InnoDB, so there's no SQLite-style PRAGMA to set."""
+    creds = st.secrets["mysql"]
+    return pymysql.connect(
+        host=creds["host"], port=int(creds.get("port", 3306)),
+        user=creds["user"], password=creds["password"],
+        database=creds["database"], autocommit=False,
+    )
 
 
 def load_companies(conn):
+    """Return all companies (id + name), alphabetically, for the sidebar picker."""
     return pd.read_sql("SELECT company_id, company_name FROM companies ORDER BY company_name", conn)
 
 
 def load_rounds(conn, company_id):
-    return pd.read_sql(
-        "SELECT * FROM financing_rounds WHERE company_id = ? ORDER BY round_order, round_id",
+    """Return every financing round for one company, in display order."""
+    df = pd.read_sql(
+        "SELECT * FROM financing_rounds WHERE company_id = %s ORDER BY round_order, round_id",
         conn, params=(company_id,),
     )
+    # MySQL's DATE column comes back as datetime.date objects (or None), but
+    # the rest of this app expects ISO date strings (matching the old SQLite
+    # TEXT column) -- normalize once here rather than downstream everywhere.
+    df["date_closed"] = df["date_closed"].apply(lambda d: d.isoformat() if pd.notna(d) else None)
+    return df
 
 
 def load_quality_log(conn, company_name=None):
+    """Return data-quality log entries.
+
+    With no company_name, returns the full log (used by the Data Quality tab).
+    With a company_name, returns that company's entries plus any dataset-wide
+    ("All Companies") entries, so global caveats surface on every company page.
+    """
     if company_name is None:
         return pd.read_sql("SELECT * FROM data_quality_log ORDER BY issue_id", conn)
     return pd.read_sql(
-        "SELECT * FROM data_quality_log WHERE company_name = ? OR company_name = 'All Companies' "
+        "SELECT * FROM data_quality_log WHERE company_name = %s OR company_name = 'All Companies' "
         "ORDER BY issue_id",
         conn, params=(company_name,),
     )
@@ -48,38 +80,59 @@ def load_quality_log(conn, company_name=None):
 def renumber_rounds(conn, company_id):
     """Auto-derive round_order per company from date_closed (Planned/undated
     rounds sort last), so no one has to type an order number by hand."""
-    rows = conn.execute(
-        "SELECT round_id, date_closed FROM financing_rounds WHERE company_id = ?",
+    # Pull every round's id + closing date for this company, then sort:
+    # undated (Planned) rows sort after dated ones, dated rows sort
+    # chronologically, and round_id breaks ties deterministically.
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT round_id, date_closed FROM financing_rounds WHERE company_id = %s",
         (company_id,),
-    ).fetchall()
-    rows.sort(key=lambda r: (r[1] is None, r[1] or "", r[0]))
+    )
+    rows = cur.fetchall()
+    rows = sorted(rows, key=lambda r: (r[1] is None, r[1] or date.min, r[0]))
+    # Re-write round_order sequentially (1, 2, 3, ...) to match the new sort order.
     for order, (round_id, _) in enumerate(rows, start=1):
-        conn.execute(
-            "UPDATE financing_rounds SET round_order = ? WHERE round_id = ?",
+        cur.execute(
+            "UPDATE financing_rounds SET round_order = %s WHERE round_id = %s",
             (order, round_id),
         )
 
 
+# --------------------------------------------------------------------- #
+# Display formatting helpers — convert raw numeric values (or NaN) into
+# the strings shown in tables/metrics.
+# --------------------------------------------------------------------- #
+
 def money_fmt(x):
+    """Format a dollar amount with thousands separators, or an em-dash if missing."""
     return "–" if pd.isna(x) else f"${x:,.0f}"
 
 
 def pct_fmt(x):
+    """Format a fraction (0.25) as a percentage (25.0%), or an em-dash if missing."""
     return "–" if pd.isna(x) else f"{x:.1%}"
 
 
 def shares_fmt(x):
+    """Format a share count with thousands separators, or an em-dash if missing."""
     return "–" if pd.isna(x) else f"{x:,.0f}"
 
 
 def build_display_table(rounds_df):
+    """Turn the raw financing_rounds columns into the human-readable table
+    shown in the Add/Update Round tab (formatted currency/percent strings,
+    friendlier column names, and a flag column for rows needing review)."""
     if rounds_df.empty:
         return rounds_df
     df = rounds_df.copy()
+    # Flag rows that are estimates or explicitly marked as needing review,
+    # so they can be visually highlighted below.
     df["Flag"] = df.apply(
         lambda r: "⚠️" if (r["is_estimate"] == 1 or r["source_confidence"] == "needs_review") else "",
         axis=1,
     )
+    # Build the presentation-only DataFrame: same data, formatted for reading
+    # rather than computation, with renamed columns for the on-screen table.
     display = pd.DataFrame({
         "Flag": df["Flag"],
         "Round": df["round_name"],
@@ -100,14 +153,23 @@ def build_display_table(rounds_df):
 
 
 def highlight_flagged(row):
+    """Row-styling function for st.dataframe: give flagged rows a highlighted
+    background so they stand out from confirmed/clean rows."""
     if row["Flag"] == "⚠️":
         return ["background-color: #fff3cd"] * len(row)
     return [""] * len(row)
 
 
+# --------------------------------------------------------------------- #
+# Tab 1: Add / Update Round
+# --------------------------------------------------------------------- #
+
 def tab_add_update_round(conn, company_id, company_name):
+    """Tab that lists a company's existing rounds and lets the user add a
+    new one or edit an existing one, with validation before writing to the DB."""
     st.subheader(f"Funding rounds — {company_name}")
 
+    # --- Existing rounds table -------------------------------------- #
     rounds_df = load_rounds(conn, company_id)
     display_df = build_display_table(rounds_df)
     if display_df.empty:
@@ -119,6 +181,7 @@ def tab_add_update_round(conn, company_id, company_name):
             hide_index=True,
         )
 
+    # --- Data quality notes relevant to this company ----------------- #
     log_df = load_quality_log(conn, company_name)
     if not log_df.empty:
         open_count = (log_df["status"] == "Open").sum()
@@ -135,12 +198,17 @@ def tab_add_update_round(conn, company_id, company_name):
     # --- Add / Edit selector (outside the form so the page reacts immediately) ---
     mode = st.radio("Action", ["Add new round", "Edit existing round"], horizontal=True, key="mode_radio")
 
+    # editing_round_id stays None (and prefill stays empty) for the "Add new
+    # round" path; for "Edit existing round" they get populated from the
+    # selected row so the form below can be pre-filled with its current values.
     editing_round_id = None
     prefill = {}
     if mode == "Edit existing round":
         if rounds_df.empty:
             st.warning("No existing rounds to edit yet.")
             return
+        # Build a human-readable label per round for the selectbox, then map
+        # the chosen label back to its round_id.
         labels = {
             row.round_id: f"{row.round_name} — {row.date_closed or 'Planned'} (order {row.round_order})"
             for row in rounds_df.itertuples()
@@ -149,9 +217,15 @@ def tab_add_update_round(conn, company_id, company_name):
         editing_round_id = [rid for rid, lbl in labels.items() if lbl == chosen_label][0]
         prefill = rounds_df[rounds_df.round_id == editing_round_id].iloc[0].to_dict()
 
+    # Unique key suffix so widget state doesn't leak between companies/rounds
+    # when Streamlit reruns the script (e.g. switching companies or the round
+    # being edited shouldn't reuse another round's stale widget values).
     widget_scope = f"{company_id}_{editing_round_id or 'new'}"
 
     # --- Reactive controls that determine what the form below looks like ---
+    # These live outside st.form so changing them (e.g. round type) immediately
+    # re-renders the form fields below (enabling/disabling priced-round fields)
+    # without waiting for a submit click.
     col1, col2 = st.columns(2)
     with col1:
         round_type = st.selectbox(
@@ -177,6 +251,8 @@ def tab_add_update_round(conn, company_id, company_name):
             key=f"amount_{widget_scope}",
         )
     with col4:
+        # Pre-money only makes sense for a priced round (SAFEs/notes convert
+        # later without a set valuation at this stage), so disable it otherwise.
         pre_money = st.number_input(
             "Pre-money (USD)", min_value=0.0,
             value=float(prefill.get("pre_money_usd") or 0.0),
@@ -186,14 +262,20 @@ def tab_add_update_round(conn, company_id, company_name):
             help="Disabled for SAFE / Convertible Note — these instruments don't have a priced pre-money valuation.",
         )
 
+    # Live-computed post-money (pre-money + amount raised) used to pre-fill
+    # the post-money field inside the form below; the user can still override it.
     computed_post_money = (pre_money + amount_raised) if is_priced else None
 
     # --- The form itself: final details + submit ---
+    # Wrapped in st.form so these fields don't trigger a rerun on every
+    # keystroke — only the "Save round" button submits them all at once.
     with st.form(key=f"round_form_{widget_scope}"):
         round_name = st.text_input("Round name", value=prefill.get("round_name", ""))
 
         date_closed_value = None
         if round_status == "Closed":
+            # Default to today, unless editing a round that already has a
+            # closing date — then default to that date instead.
             default_date = date.today()
             if prefill.get("date_closed"):
                 try:
@@ -226,6 +308,9 @@ def tab_add_update_round(conn, company_id, company_name):
 
         submitted = st.form_submit_button("Save round")
 
+    # Nothing below matters until the form is actually submitted — Streamlit
+    # reruns this whole function on every interaction, so bail out early
+    # otherwise (e.g. while the user is still typing into the form fields).
     if not submitted:
         return
 
@@ -247,6 +332,9 @@ def tab_add_update_round(conn, company_id, company_name):
         if post_money <= 0:
             errors.append("Post-money is required for Priced Equity rounds.")
         if pre_money > 0 and post_money > 0:
+            # Post-money should reconcile with pre-money + amount raised;
+            # allow a small tolerance for rounding, but warn (not block) if
+            # the user has entered something that doesn't add up.
             expected_post = pre_money + amount_raised
             tolerance = max(1.0, 0.005 * expected_post)
             if abs(post_money - expected_post) > tolerance:
@@ -260,17 +348,21 @@ def tab_add_update_round(conn, company_id, company_name):
         if datetime.strptime(date_closed_value, "%Y-%m-%d").date() > date.today():
             errors.append("Date closed can't be in the future for a Closed round.")
 
+    # Hard errors stop the save entirely; nothing is written to the DB.
     if errors:
         for e in errors:
             st.error(e)
         return
 
+    # Warnings are shown but don't block the save.
     for w in warnings:
         st.warning(w)
 
     # ------------------------------------------------------------------ #
     # Compute derived fields and write.
     # ------------------------------------------------------------------ #
+    # Priced-round-only fields collapse to None for SAFE/Convertible Note
+    # rounds, since those instruments don't have these values yet.
     final_pre = pre_money if is_priced else None
     final_post = post_money if is_priced else None
     final_price = price_per_share if (is_priced and price_per_share > 0) else None
@@ -278,8 +370,11 @@ def tab_add_update_round(conn, company_id, company_name):
     ownership_new_investor = (amount_raised / final_post) if final_post else None
     now = datetime.utcnow().isoformat(timespec="seconds")
 
+    cur = conn.cursor()
     if editing_round_id is None:
-        conn.execute(
+        # New round: insert with round_order=0 as a placeholder — it gets
+        # recalculated correctly by renumber_rounds() right after.
+        cur.execute(
             """
             INSERT INTO financing_rounds (
                 company_id, round_name, round_order, date_closed, round_status,
@@ -287,7 +382,7 @@ def tab_add_update_round(conn, company_id, company_name):
                 price_per_share, shares_post_round, ownership_pct_new_investor,
                 ownership_pct_fund_position, source_confidence, is_estimate,
                 source_note, created_at, updated_at
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """,
             (
                 company_id, round_name.strip(), 0, date_closed_value, round_status,
@@ -297,14 +392,18 @@ def tab_add_update_round(conn, company_id, company_name):
             ),
         )
     else:
-        conn.execute(
+        # Existing round: update in place. Fields like
+        # ownership_pct_fund_position, source_confidence, is_estimate, and
+        # source_note are intentionally left untouched here — they're not
+        # collected by this form and shouldn't be overwritten with defaults.
+        cur.execute(
             """
             UPDATE financing_rounds SET
-                round_name=?, date_closed=?, round_status=?, round_type=?,
-                amount_raised_usd=?, pre_money_usd=?, post_money_usd=?,
-                price_per_share=?, shares_post_round=?, ownership_pct_new_investor=?,
-                updated_at=?
-            WHERE round_id=?
+                round_name=%s, date_closed=%s, round_status=%s, round_type=%s,
+                amount_raised_usd=%s, pre_money_usd=%s, post_money_usd=%s,
+                price_per_share=%s, shares_post_round=%s, ownership_pct_new_investor=%s,
+                updated_at=%s
+            WHERE round_id=%s
             """,
             (
                 round_name.strip(), date_closed_value, round_status, round_type,
@@ -313,22 +412,33 @@ def tab_add_update_round(conn, company_id, company_name):
             ),
         )
 
+    # Recompute round_order for the whole company (dates may have shifted
+    # the ordering), commit, confirm, and rerun so the table above refreshes.
     renumber_rounds(conn, company_id)
     conn.commit()
     st.success(f"Saved '{round_name}'.")
     st.rerun()
 
 
+# --------------------------------------------------------------------- #
+# Shared helpers for the "Model Future Round" and "Exit Assumptions" tabs
+# --------------------------------------------------------------------- #
+
 def get_latest_priced_round(rounds_df):
     """Most recent Closed round with a post-money value -- i.e. the last
     round that actually established a valuation. Returns (row, is_ambiguous)
     where is_ambiguous flags the Nimbus-style case of multiple conflicting
     rows sharing the same (latest) round_order."""
+    # Only Closed rounds with a post-money value count as an established
+    # valuation — Planned rounds or unpriced instruments (SAFE/note) don't.
     priced_closed = rounds_df[
         (rounds_df["round_status"] == "Closed") & rounds_df["post_money_usd"].notna()
     ]
     if priced_closed.empty:
         return None, False
+    # "Latest" means highest round_order; if more than one row shares that
+    # order (a data-quality conflict), flag it as ambiguous and fall back to
+    # the most recently entered row (highest round_id) as a best guess.
     max_order = priced_closed["round_order"].max()
     at_max_order = priced_closed[priced_closed["round_order"] == max_order].sort_values("round_id")
     is_ambiguous = len(at_max_order) > 1
@@ -337,6 +447,9 @@ def get_latest_priced_round(rounds_df):
 
 def get_engine_baseline_ownership(latest_row):
     """Returns (pct, is_approximate). None if nothing is trackable at all."""
+    # Prefer the directly-tracked fund position if it exists; otherwise fall
+    # back to the new-investor % from the latest round as an approximation
+    # (flagged via is_approximate so callers can caveat it in the UI).
     if pd.notna(latest_row["ownership_pct_fund_position"]):
         return float(latest_row["ownership_pct_fund_position"]), False
     if pd.notna(latest_row["ownership_pct_new_investor"]):
@@ -344,9 +457,16 @@ def get_engine_baseline_ownership(latest_row):
     return None, None
 
 
+# --------------------------------------------------------------------- #
+# Tab 2: Model Future Round
+# --------------------------------------------------------------------- #
+
 def tab_model_future_round(conn, company_id, company_name):
+    """Tab that projects a hypothetical next financing round (and an
+    optional exit) from the company's current cap-table baseline."""
     st.subheader(f"Model a future round — {company_name}")
 
+    # --- Establish the current-state baseline from the latest priced round ---
     rounds_df = load_rounds(conn, company_id)
     latest, is_ambiguous = get_latest_priced_round(rounds_df)
 
@@ -370,6 +490,8 @@ def tab_model_future_round(conn, company_id, company_name):
 
     engine_pct, engine_is_approx = get_engine_baseline_ownership(latest)
 
+    # Three headline metrics summarizing the baseline: last valuation, total
+    # shares outstanding, and Engine's current ownership (if trackable).
     c1, c2, c3 = st.columns(3)
     c1.metric("Latest post-money", money_fmt(latest["post_money_usd"]))
     c1.caption(f"As of {latest['round_name']} ({latest['date_closed'] or 'undated'})")
@@ -388,6 +510,8 @@ def tab_model_future_round(conn, company_id, company_name):
     else:
         c3.metric("Engine's current ownership", "Not trackable")
 
+    # Explain *why* the ownership figure is approximate/missing, since the
+    # metric above alone doesn't convey that nuance.
     if engine_pct is not None and engine_is_approx:
         st.caption(
             "⚠️ Engine's cumulative ownership isn't separately tracked for this "
@@ -405,6 +529,7 @@ def tab_model_future_round(conn, company_id, company_name):
     st.divider()
     st.markdown("#### Assumed new round")
 
+    # --- User-adjustable assumptions for the hypothetical next round ---
     col_a, col_b = st.columns(2)
     with col_a:
         assumed_raise = st.number_input(
@@ -426,8 +551,11 @@ def tab_model_future_round(conn, company_id, company_name):
         st.info("Enter a raise amount and pre-money valuation above to see projections.")
         return
 
+    # --- Derived projections for the hypothetical round ---
     new_post = assumed_pre + assumed_raise
     new_investor_pct = assumed_raise / new_post
+    # Existing holders (including Engine) get diluted by pre-money/post-money;
+    # only computed if Engine's current ownership is trackable at all.
     diluted_engine_pct = engine_pct * (assumed_pre / new_post) if engine_pct is not None else None
 
     st.markdown("#### Resulting round")
@@ -462,6 +590,8 @@ def tab_model_future_round(conn, company_id, company_name):
         "proceeds at exit, especially for preferred stock, would differ."
     )
 
+    # Default exit value is an arbitrary 3x placeholder multiple on the
+    # resulting post-money — purely a starting point for the user to adjust.
     exit_value = st.number_input(
         "Assumed exit value (USD)", min_value=0.0,
         value=float(new_post * 3),
@@ -483,13 +613,22 @@ def tab_model_future_round(conn, company_id, company_name):
         e2.metric("New investor's straight-line return", money_fmt(new_investor_return))
 
 
+# --------------------------------------------------------------------- #
+# Tab 3: Exit Assumptions (Fathom Analytics only — see main())
+# --------------------------------------------------------------------- #
+
 def tab_exit_assumptions(conn):
+    """Fixed walkthrough tab modeling an exit scenario for Fathom Analytics
+    specifically, independent of whichever company is selected in the sidebar.
+    Only rendered when Fathom Analytics is the selected company (see main())."""
     st.subheader("Exit Assumptions — Fathom Analytics")
     st.caption(
         "Fixed walkthrough company (chosen per instruction) — independent of "
         "the sidebar company selector used in the other tabs."
     )
 
+    # Always load Fathom Analytics specifically, regardless of the sidebar
+    # selection, since this tab is a fixed case study rather than per-company.
     companies = load_companies(conn)
     fathom_id = int(companies.loc[companies["company_name"] == "Fathom Analytics", "company_id"].iloc[0])
     rounds_df = load_rounds(conn, fathom_id)
@@ -505,9 +644,13 @@ def tab_exit_assumptions(conn):
     last_date = latest["date_closed"]
     last_year = datetime.strptime(last_date, "%Y-%m-%d").year if last_date else date.today().year
 
+    # Only "Open" data-quality issues matter here — resolved ones don't need
+    # a caveat in the assumptions writeup below.
     open_issues = load_quality_log(conn, "Fathom Analytics")
     open_issues = open_issues[open_issues["status"] == "Open"]
 
+    # Explanation of how Engine's ownership baseline was derived, phrased
+    # differently depending on whether it's a tracked figure or an approximation.
     engine_note = (
         "tracked directly as a fund position."
         if not engine_is_approx else
@@ -518,6 +661,8 @@ def tab_exit_assumptions(conn):
         "a pro-rata new-investor position across all rounds."
     )
 
+    # Long-form writeup documenting every assumption behind the numbers below,
+    # so the reasoning is transparent rather than a black-box calculation.
     with st.expander("Assumptions & reasoning (read before trusting the numbers below)", expanded=True):
         st.markdown(
             f"""
@@ -548,6 +693,8 @@ def tab_exit_assumptions(conn):
   compound to hit the assumed exit number) rather than a true IRR on Engine's
   cash-in/cash-out.
 """
+            # Append an extra bullet noting open data-quality issues, but only
+            # if there are any — otherwise this evaluates to an empty string.
             + (
                 f"\n- ℹ️ Fathom has {len(open_issues)} open data-quality issue(s) in "
                 "the tracker (Pre-Seed SAFE amount conflict) — it doesn't affect "
@@ -570,6 +717,8 @@ def tab_exit_assumptions(conn):
             key="fathom_exit_years",
         )
 
+    # Exit valuation defaults to multiple × last post-money, but the user can
+    # override it directly with a specific dollar figure instead.
     computed_exit_valuation = last_post_money * multiple
     exit_valuation = st.number_input(
         "Assumed exit valuation (USD) — defaults to multiple × last post-money; override for a specific scenario",
@@ -577,6 +726,8 @@ def tab_exit_assumptions(conn):
         step=1_000_000.0, format="%.2f", key="fathom_exit_valuation",
     )
     effective_multiple = exit_valuation / last_post_money if last_post_money else None
+    # If the user overrode the computed default, surface what multiple that
+    # override actually implies, for consistency with the multiple entered above.
     if abs(exit_valuation - computed_exit_valuation) > max(1.0, 0.005 * computed_exit_valuation):
         st.caption(
             f"ℹ️ Overridden — this implies an effective multiple of "
@@ -595,6 +746,8 @@ def tab_exit_assumptions(conn):
         return
 
     engine_return = engine_pct * exit_valuation
+    # Implied CAGR: the valuation growth rate that would need to hold over
+    # `years` to go from last_post_money to exit_valuation.
     cagr = (exit_valuation / last_post_money) ** (1 / years) - 1 if last_post_money and years else None
 
     r1, r2, r3 = st.columns(3)
@@ -615,7 +768,13 @@ def tab_exit_assumptions(conn):
         )
 
 
+# --------------------------------------------------------------------- #
+# Tab 4: Data Quality
+# --------------------------------------------------------------------- #
+
 def tab_data_quality(conn):
+    """Tab listing every data-quality log entry across all companies, with
+    a status filter and summary counts."""
     st.subheader("Data Quality Log — all companies")
     log_df = load_quality_log(conn)
     open_count = (log_df["status"] == "Open").sum()
@@ -633,27 +792,46 @@ def tab_data_quality(conn):
     )
 
 
+# --------------------------------------------------------------------- #
+# App entry point
+# --------------------------------------------------------------------- #
+
 def main():
     st.title("Portfolio Tracker")
 
     conn = get_conn()
     companies = load_companies(conn)
 
+    # Sidebar company selector drives which company's data tabs 1, 2, and 4
+    # show; tab 3 (Exit Assumptions) ignores this and is Fathom-only.
     st.sidebar.header("Company")
     company_name = st.sidebar.selectbox("Select a company", companies["company_name"])
     company_id = int(companies.loc[companies.company_name == company_name, "company_id"].iloc[0])
 
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "Add / Update Round", "Model Future Round", "Exit Assumptions", "Data Quality",
-    ])
+    # The Exit Assumptions tab is a fixed Fathom Analytics case study, so it
+    # only makes sense to show it when Fathom is the selected company —
+    # otherwise the tab list is built without it.
+    show_exit_assumptions = company_name == "Fathom Analytics"
 
-    with tab1:
+    tab_labels = ["Add / Update Round", "Model Future Round"]
+    if show_exit_assumptions:
+        tab_labels.append("Exit Assumptions")
+    tab_labels.append("Data Quality")
+
+    tabs = st.tabs(tab_labels)
+
+    with tabs[0]:
         tab_add_update_round(conn, company_id, company_name)
-    with tab2:
+    with tabs[1]:
         tab_model_future_round(conn, company_id, company_name)
-    with tab3:
-        tab_exit_assumptions(conn)
-    with tab4:
+    # Tab indices shift depending on whether Exit Assumptions was included
+    # above, so next_tab tracks the current position instead of a fixed index.
+    next_tab = 2
+    if show_exit_assumptions:
+        with tabs[next_tab]:
+            tab_exit_assumptions(conn)
+        next_tab += 1
+    with tabs[next_tab]:
         tab_data_quality(conn)
 
     conn.close()

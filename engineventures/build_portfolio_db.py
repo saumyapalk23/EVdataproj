@@ -1,30 +1,43 @@
 """
-Build a normalized SQLite portfolio database from Portfolio_Data_RAW_practice.xlsx.
+Build AND CLEAN the MySQL "portfolio" database from Portfolio_Data_RAW_practice.xlsx.
 
 Reads each company tab by header name (never by column position -- handles
 Fathom's reversed Pre-Money/Post-Money columns), filters out footnote/text
 rows embedded in the data ranges, applies the unit/sign/scenario fixes
 documented in data_quality_log, and recomputes ownership_pct_new_investor
-as amount_raised_usd / post_money_usd for every row (source sheets' own
-Ownership% columns are not trusted -- see data_quality_log for why).
+as amount_raised_usd / post_money_usd for every row.
 
-Output: data/portfolio.db (SQLite) + data/data_quality_log.csv
+Output: data/portfolio.sql (MySQL dump, executed against MySQL by this
+script). The Streamlit app (app.py) reads the resulting MySQL database
+directly; nothing in this pipeline uses SQLite.
 """
 
-import csv
 import os
-import sqlite3
+import tomllib
 from datetime import datetime
 
 import openpyxl
+import pymysql
+from pymysql.constants import CLIENT
 
+# Source workbook this script reads from, and the output artifact it
+# produces: a plain-text MySQL SQL dump (the version-controlled,
+# human-diffable source of truth, also executed against MySQL by this
+# script to actually build the database).
 SRC = "Portfolio_Data_RAW_practice.xlsx"
 os.makedirs("data", exist_ok=True)
-DB_PATH = os.path.join("data", "portfolio.db")
-LOG_CSV = os.path.join("data", "data_quality_log.csv")
+SQL_DUMP_PATH = os.path.join("data", "portfolio.sql")
 
+# Reuse the same MySQL credentials as app.py, rather than duplicating them.
+with open(os.path.join(".streamlit", "secrets.toml"), "rb") as f:
+    MYSQL_CREDS = tomllib.load(f)["mysql"]
+
+# Single timestamp reused for every row inserted by this run, so a run's
+# created_at/updated_at/logged_at values are all consistent with each other.
 NOW = datetime.utcnow().isoformat(timespec="seconds")
 
+# data_only=True reads cached formula *results* rather than formula text
+# (several sheets have #DIV/0! ownership formulas that only make sense as values).
 wb = openpyxl.load_workbook(SRC, data_only=True)
 
 # ---------------------------------------------------------------------------
@@ -33,7 +46,13 @@ wb = openpyxl.load_workbook(SRC, data_only=True)
 # ---------------------------------------------------------------------------
 
 def extract_rows(sheet_name, header_row, data_rows):
+    """Read a rectangular block of a worksheet into a list of dicts, keyed by
+    each column's header text (not its position) -- this is what lets the
+    same code handle Fathom's Pre-Money/Post-Money columns being swapped
+    relative to other sheets. Rows with no Amount Raised value are skipped
+    since they're footnotes/blank rows, not real financing rounds."""
     ws = wb[sheet_name]
+    # Build header-name -> column-index map from the header row.
     hmap = {c.value: c.column for c in ws[header_row] if c.value is not None}
     out = []
     for r in data_rows:
@@ -41,12 +60,15 @@ def extract_rows(sheet_name, header_row, data_rows):
         amount = ws.cell(row=r, column=amount_col).value if amount_col else None
         if amount is None:
             continue
+        # Pull every mapped column's value for this row into a dict.
         rec = {name: ws.cell(row=r, column=col).value for name, col in hmap.items()}
         out.append(rec)
     return out
 
 
 def normalize_round_name(raw):
+    """Collapse the two spellings of the same round ('Series A-2' and
+    'Series A2') seen in Nimbus's sheet down to one canonical name."""
     raw = raw.strip()
     if raw in ("Series A-2", "Series A2"):
         return "Series A2"
@@ -54,18 +76,27 @@ def normalize_round_name(raw):
 
 
 def parse_date(v):
+    """Convert an Excel cell value to an ISO date string, or None if it's
+    non-date placeholder text (e.g. Nimbus's Series B 'TBD 2027') -- which
+    signals the round hasn't actually closed yet."""
     if isinstance(v, datetime):
         return v.date().isoformat()
     return None  # non-date text (e.g. "TBD 2027") -> not yet closed
 
 
 def classify_round_type(name, pre_money):
+    """Infer round_type from whether a pre-money valuation exists. No
+    pre-money means the round is unpriced (SAFE, or a Convertible Note if
+    the round name mentions "bridge"); a pre-money value means it's priced equity."""
     if pre_money is None:
         return "Convertible Note" if "bridge" in name.lower() else "SAFE"
     return "Priced Equity"
 
 
 def pct(amount, post_money):
+    """Compute ownership_pct_new_investor = amount raised / post-money.
+    This is the single, consistent basis used for every row in the database,
+    replacing each sheet's own (unreliable) Ownership% column."""
     if amount is None or post_money is None:
         return None
     return amount / post_money
@@ -79,6 +110,9 @@ def assign_round_orders(rows, key_fn):
     orders = []
     for rec in rows:
         key = key_fn(rec)
+        # Only bump the order counter when the key actually changes, so
+        # consecutive rows sharing a key (e.g. two conflicting entries for
+        # the same round/date) are treated as one position in the sequence.
         if key != prev_key:
             order += 1
             prev_key = key
@@ -86,6 +120,8 @@ def assign_round_orders(rows, key_fn):
     return orders
 
 
+# In-memory accumulators populated by the per-company blocks below, then
+# bulk-inserted into SQLite in the "Write to SQLite" section further down.
 rounds = []          # final financing_rounds rows (dicts)
 log = []             # final data_quality_log rows (dicts)
 
@@ -93,6 +129,7 @@ log = []             # final data_quality_log rows (dicts)
 def add_round(company, round_name, round_order, date_closed, status, rtype,
               amount, pre, post, price, shares, own_new, own_fund,
               confidence, is_estimate, note):
+    """Append one financing_rounds row (as a dict) to the `rounds` accumulator."""
     rounds.append(dict(
         company_name=company, round_name=round_name, round_order=round_order,
         date_closed=date_closed, round_status=status, round_type=rtype,
@@ -104,6 +141,9 @@ def add_round(company, round_name, round_order, date_closed, status, rtype,
 
 
 def add_issue(company, round_name, issue, resolution, status):
+    """Append one data_quality_log row (as a dict) to the `log` accumulator.
+    This is the audit trail explaining every non-obvious judgment call made
+    while normalizing the raw workbook data below."""
     log.append(dict(company_name=company, round_name=round_name, issue=issue,
                      resolution=resolution, status=status, logged_at=NOW))
 
@@ -111,7 +151,10 @@ def add_issue(company, round_name, issue, resolution, status):
 # ---------------------------------------------------------------------------
 # Nimbus Robotics
 # ---------------------------------------------------------------------------
+# Rows 2-8 of the "Nimbus Robotics" sheet (row 1 is the header).
 raw = extract_rows("Nimbus Robotics", header_row=1, data_rows=range(2, 9))
+# Order rounds by (normalized name, date); two rows sharing both a name and
+# date are treated as duplicate/conflicting entries for the same round slot.
 orders = assign_round_orders(
     raw, lambda rec: (normalize_round_name(rec["Round"]), rec["Date"] if isinstance(rec["Date"], datetime) else None)
 )
@@ -125,6 +168,10 @@ for rec, order in zip(raw, orders):
     rtype = classify_round_type(name, pre)
 
     if name == "Series B":  # unpriced IC guidance round
+        # Per the sheet's own footnote and the Portfolio Notes, Series B is
+        # only IC (investment committee) guidance -- nothing has actually
+        # been signed, so it's inserted as Planned/unpriced with the
+        # priced-round-only fields (price/shares/ownership) left blank.
         add_round("Nimbus Robotics", name, order, None, "Planned", rtype,
                    amount, pre, post, None, None, None, None,
                    "needs_review", 1,
@@ -132,6 +179,9 @@ for rec, order in zip(raw, orders):
                    "footnote and Portfolio Notes (~$135M post, nothing signed). "
                    "price_per_share/shares_post_round/ownership left blank.")
     elif name == "Series A2":  # duplicate/conflicting 5/22/2023 rows
+        # Two rows for the same date/round with different dollar figures --
+        # both are inserted (sharing round_order) since there's no basis in
+        # the source workbook to pick one as correct; each is flagged.
         alt = "4.5M raised / $55.5M post" if amount == 4_000_000 else "4.0M raised / $55.0M post"
         add_round("Nimbus Robotics", name, order, date_closed, status, rtype,
                    amount, pre, post, price, shares, pct(amount, post), None,
@@ -140,10 +190,15 @@ for rec, order in zip(raw, orders):
                    f"'Series A-2' and 'Series A2' labels); cross-ref: other row "
                    f"shows ${alt}. Not reconciled -- see data_quality_log.")
     else:
+        # Ordinary, unambiguous round -- insert as-is with the standard
+        # recomputed ownership_pct_new_investor.
         add_round("Nimbus Robotics", name, order, date_closed, status, rtype,
                    amount, pre, post, price, shares, pct(amount, post), None,
                    "confirmed", 0, "Tracker sheet, reconciled, no adjustments.")
 
+# Data-quality entries documenting the judgment calls made above, plus two
+# entries that simply cross-check the sheet against separately-supplied
+# Portfolio Notes text (no data changes resulted from those checks).
 add_issue("Nimbus Robotics", "Series B",
           "Series B date given as text 'TBD 2027' rather than a real date; "
           "round not yet priced per sheet footnote.",
@@ -178,6 +233,8 @@ add_issue("Nimbus Robotics", "Series B",
 # ---------------------------------------------------------------------------
 # Verdant Bio (Continue Pro-Rata Participation scenario only, rows 4-7)
 # ---------------------------------------------------------------------------
+# Header is on row 3 here (not row 1); only rows 4-7 belong to the
+# "Continue Pro-Rata Participation" scenario -- see the sheet-structure note below.
 raw = extract_rows("Verdant Bio", header_row=3, data_rows=range(4, 8))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
 for rec, order in zip(raw, orders):
@@ -188,6 +245,9 @@ for rec, order in zip(raw, orders):
     rtype = classify_round_type(name, pre)
 
     if name == "Series C":
+        # Series C has full deal terms in the sheet but is not confirmed
+        # closed, so it's recorded as Planned with the expected date moved
+        # to source_note rather than date_closed.
         add_round("Verdant Bio", name, order, None, "Planned", rtype,
                    amount, pre, post, None, None, pct(amount, post), fund_pos,
                    "needs_review", 1,
@@ -196,6 +256,9 @@ for rec, order in zip(raw, orders):
                    "closed as of last tracker update, so date_closed left "
                    "NULL and status set to Planned.")
     else:
+        # fund_pos (the sheet's stored Ownership% column) is preserved
+        # separately as ownership_pct_fund_position -- it represents
+        # Engine's cumulative diluting position, not this round's new-money %.
         add_round("Verdant Bio", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, None, pct(amount, post), fund_pos,
                    "confirmed", 0,
@@ -238,6 +301,9 @@ add_issue("Verdant Bio", "Series C",
 # ---------------------------------------------------------------------------
 # Fathom Analytics
 # ---------------------------------------------------------------------------
+# This is the sheet whose Pre-Money/Post-Money columns are swapped relative
+# to the others -- reading by header name (not position) in extract_rows()
+# is what makes that a non-issue here.
 raw = extract_rows("Fathom Analytics", header_row=1, data_rows=range(2, 6))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
 for rec, order in zip(raw, orders):
@@ -248,6 +314,9 @@ for rec, order in zip(raw, orders):
     rtype = classify_round_type(name, pre)
 
     if name == "Pre-Seed":
+        # A separately-supplied note mentions a possibly-duplicate/conflicting
+        # $1.2M SAFE dated the same day as this $750K row; the tracker's own
+        # figure is kept as-is (not overwritten) but flagged for review.
         add_round("Fathom Analytics", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, price, None, pct(amount, post), None,
                    "needs_review", 0,
@@ -279,6 +348,9 @@ add_issue("Fathom Analytics", "Series B",
 # ---------------------------------------------------------------------------
 # Ridgeline Materials ($000s -> multiply by 1000)
 # ---------------------------------------------------------------------------
+# This sheet's own footnote states every dollar figure is quoted in
+# thousands, unlike every other sheet -- all dollar fields below get
+# multiplied by RIDGELINE_MULT before being inserted.
 RIDGELINE_MULT = 1000
 raw = extract_rows("Ridgeline Materials", header_row=1, data_rows=range(2, 7))
 orders = assign_round_orders(raw, lambda rec: (rec["Round"], rec["Date"]))
@@ -290,10 +362,14 @@ for rec, order in zip(raw, orders):
 
     note = "Unit conversion: source figures in $000s, multiplied by 1,000."
     if name == "Series B" and amount < 0:
+        # Sheet footnote and Portfolio Notes both confirm this negative
+        # amount is a data-entry typo (should be positive), not a real
+        # negative raise -- correct the sign before converting units.
         amount = abs(amount)
         note += (" Amount Raised corrected from -22,000 to +22,000 (typo "
                  "confirmed by sheet footnote and Portfolio Notes).")
 
+    # Apply the $000s -> $ conversion to every dollar-denominated field.
     amount = amount * RIDGELINE_MULT if amount is not None else None
     pre = pre * RIDGELINE_MULT if pre is not None else None
     post = post * RIDGELINE_MULT if post is not None else None
@@ -328,10 +404,16 @@ for rec, order in zip(raw, orders):
     date_closed = parse_date(rec["Date"])
     amount, pre, post = rec["Amount Raised"], rec.get("Pre-Money"), rec.get("Post-Money")
     shares = rec.get("Shares Post-Round")
+    # Treat a share count of exactly 0 the same as missing -- it's a broken
+    # formula artifact, not a real "zero shares" fact.
     shares = None if shares in (0, None) else shares
     rtype = classify_round_type(name, pre)
 
     if name == "Series A":
+        # Only the $9.5M/15.2M-share row is kept (the other conflicting
+        # Series A row was already filtered out above for having 0 shares);
+        # still flagged as needs_review since the two rows were never
+        # reconciled against each other in the source.
         add_round("Halcyon Health", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, shares, pct(amount, post), None,
                    "needs_review", 1,
@@ -342,6 +424,9 @@ for rec, order in zip(raw, orders):
                    "shares_post_round and Ownership% broken (#DIV/0!) in "
                    "source. Pending finance confirmation per Portfolio Notes.")
     elif name == "Series B":
+        # Share count is broken in the source for this round too, but the
+        # dollar figures are independently reliable -- left shares NULL
+        # rather than guessing a value.
         add_round("Halcyon Health", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, None, pct(amount, post), None,
                    "confirmed", 0,
@@ -374,6 +459,8 @@ add_issue("Halcyon Health", "Series B",
 # ---------------------------------------------------------------------------
 # Dataset-wide issues (span multiple companies -> single consolidated row)
 # ---------------------------------------------------------------------------
+# Logged against the synthetic "All Companies" company_name (see
+# load_quality_log in app.py, which surfaces these on every company's page).
 add_issue("All Companies", None,
           "Every sheet's stored Ownership% column uses a different, "
           "unreliable basis (e.g. Halcyon's equals prior_shares/"
@@ -397,110 +484,191 @@ add_issue("All Companies", None,
           "Resolved")
 
 # ---------------------------------------------------------------------------
-# Write to SQLite
+# Company id lookup
 # ---------------------------------------------------------------------------
-conn = sqlite3.connect(DB_PATH)
-cur = conn.cursor()
-cur.executescript("""
-DROP TABLE IF EXISTS data_quality_log;
-DROP TABLE IF EXISTS financing_rounds;
-DROP TABLE IF EXISTS companies;
-
-CREATE TABLE companies (
-    company_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    company_name TEXT UNIQUE NOT NULL
-);
-
-CREATE TABLE financing_rounds (
-    round_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    company_id INTEGER NOT NULL REFERENCES companies(company_id),
-    round_name TEXT NOT NULL,
-    round_order INTEGER NOT NULL,
-    date_closed TEXT,
-    round_status TEXT NOT NULL CHECK (round_status IN ('Closed', 'Planned')),
-    round_type TEXT NOT NULL CHECK (round_type IN ('SAFE', 'Convertible Note', 'Priced Equity')),
-    amount_raised_usd REAL,
-    pre_money_usd REAL,
-    post_money_usd REAL,
-    price_per_share REAL,
-    shares_post_round REAL,
-    ownership_pct_new_investor REAL,
-    ownership_pct_fund_position REAL,
-    source_confidence TEXT NOT NULL CHECK (source_confidence IN ('confirmed', 'needs_review')),
-    is_estimate INTEGER NOT NULL CHECK (is_estimate IN (0, 1)),
-    source_note TEXT,
-    created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL
-);
-
-CREATE TABLE data_quality_log (
-    issue_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    company_name TEXT NOT NULL,
-    round_name TEXT,
-    issue TEXT NOT NULL,
-    resolution TEXT NOT NULL,
-    status TEXT NOT NULL CHECK (status IN ('Resolved', 'Open')),
-    logged_at TEXT NOT NULL
-);
-""")
-
+# The fixed list of portfolio companies, in the order they'll get
+# AUTO_INCREMENT ids (1..5) when inserted into MySQL below -- this dict lets
+# the rest of this script (and the SQL-dump generation further down) resolve
+# each round's company_id without touching a database.
 COMPANIES = ["Nimbus Robotics", "Verdant Bio", "Fathom Analytics",
              "Ridgeline Materials", "Halcyon Health"]
-for name in COMPANIES:
-    cur.execute("INSERT INTO companies (company_name) VALUES (?)", (name,))
-company_id = {name: cid for cid, name in
-              cur.execute("SELECT company_id, company_name FROM companies")}
+company_id = {name: idx for idx, name in enumerate(COMPANIES, start=1)}
 
-for r in rounds:
-    cur.execute("""
-        INSERT INTO financing_rounds (
-            company_id, round_name, round_order, date_closed, round_status,
-            round_type, amount_raised_usd, pre_money_usd, post_money_usd,
-            price_per_share, shares_post_round, ownership_pct_new_investor,
-            ownership_pct_fund_position, source_confidence, is_estimate,
-            source_note, created_at, updated_at
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-    """, (
-        company_id[r["company_name"]], r["round_name"], r["round_order"],
-        r["date_closed"], r["round_status"], r["round_type"],
-        r["amount_raised_usd"], r["pre_money_usd"], r["post_money_usd"],
-        r["price_per_share"], r["shares_post_round"],
-        r["ownership_pct_new_investor"], r["ownership_pct_fund_position"],
-        r["source_confidence"], r["is_estimate"], r["source_note"], NOW, NOW,
-    ))
+# ---------------------------------------------------------------------------
+# Write MySQL-flavored SQL dump (for DataGrip, and executed against MySQL below)
+# ---------------------------------------------------------------------------
+# portfolio.sql is a hand-generated MySQL-compatible schema + data dump built
+# straight from the `rounds`/`log` accumulators above. It's both the
+# version-controlled, human-diffable artifact you'd open in DataGrip, and
+# the exact script this script itself runs against MySQL next.
 
-for i in log:
-    cur.execute("""
-        INSERT INTO data_quality_log (
-            company_name, round_name, issue, resolution, status, logged_at
-        ) VALUES (?,?,?,?,?,?)
-    """, (i["company_name"], i["round_name"], i["issue"], i["resolution"],
-          i["status"], i["logged_at"]))
+def sql_str(value):
+    """Render a Python value as a MySQL literal: quoted/escaped string, a
+    bare number, or NULL. Both '' and \\\\ are escaped since MySQL's default
+    sql_mode treats backslash as an escape character."""
+    if value is None:
+        return "NULL"
+    if isinstance(value, (int, float)):
+        return repr(value)
+    escaped = str(value).replace("\\", "\\\\").replace("'", "''")
+    return f"'{escaped}'"
 
+
+MYSQL_DATABASE = "portfolio"
+
+# DROP DATABASE + CREATE DATABASE up front means every individual DROP TABLE
+# below is guaranteed to be a no-op (nothing exists yet in the fresh
+# database) -- this is what actually makes the whole script safe to re-run,
+# rather than relying on FK-aware DROP TABLE ordering.
+MYSQL_SCHEMA = f"""
+DROP DATABASE IF EXISTS {MYSQL_DATABASE};
+CREATE DATABASE {MYSQL_DATABASE};
+USE {MYSQL_DATABASE};
+
+DROP TABLE IF EXISTS companies;
+CREATE TABLE IF NOT EXISTS companies (
+    company_id INT AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(255) UNIQUE NOT NULL
+);
+
+DROP TABLE IF EXISTS financing_rounds;
+CREATE TABLE IF NOT EXISTS financing_rounds (
+    round_id INT AUTO_INCREMENT PRIMARY KEY,
+    company_id INT NOT NULL,
+    round_name VARCHAR(255) NOT NULL,
+    round_order INT NOT NULL,
+    date_closed DATE,
+    round_status VARCHAR(20) NOT NULL CHECK (round_status IN ('Closed', 'Planned')),
+    round_type VARCHAR(30) NOT NULL CHECK (round_type IN ('SAFE', 'Convertible Note', 'Priced Equity')),
+    amount_raised_usd DOUBLE,
+    pre_money_usd DOUBLE,
+    post_money_usd DOUBLE,
+    price_per_share DOUBLE,
+    shares_post_round DOUBLE,
+    ownership_pct_new_investor DOUBLE,
+    ownership_pct_fund_position DOUBLE,
+    source_confidence VARCHAR(20) NOT NULL CHECK (source_confidence IN ('confirmed', 'needs_review')),
+    is_estimate TINYINT NOT NULL CHECK (is_estimate IN (0, 1)),
+    source_note TEXT,
+    created_at VARCHAR(32) NOT NULL,
+    updated_at VARCHAR(32) NOT NULL,
+    CONSTRAINT fk_financingRoundsCompany FOREIGN KEY (company_id) REFERENCES companies (company_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS data_quality_log;
+CREATE TABLE IF NOT EXISTS data_quality_log (
+    issue_id INT AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(255) NOT NULL,
+    round_name VARCHAR(255),
+    issue TEXT NOT NULL,
+    resolution TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('Resolved', 'Open')),
+    logged_at VARCHAR(32) NOT NULL
+);
+""".strip()
+
+with open(SQL_DUMP_PATH, "w", encoding="utf-8") as f:
+    f.write("-- MySQL dump for the \"portfolio\" database -- open this in\n")
+    f.write("-- DataGrip, or it's run directly against MySQL by this script.\n")
+    f.write("-- Safe to re-run: DROP DATABASE + CREATE DATABASE up top means\n")
+    f.write("-- the whole script always starts from a clean slate, so the\n")
+    f.write("-- per-table DROP/CREATE and FK constraints below never conflict\n")
+    f.write("-- with a prior run.\n\n")
+    f.write(MYSQL_SCHEMA + "\n\n")
+
+    f.write("INSERT INTO companies (company_id, company_name) VALUES\n")
+    f.write(",\n".join(
+        f"    ({idx}, {sql_str(name)})" for idx, name in enumerate(COMPANIES, start=1)
+    ) + ";\n\n")
+
+    round_columns = (
+        "round_id, company_id, round_name, round_order, date_closed, round_status, "
+        "round_type, amount_raised_usd, pre_money_usd, post_money_usd, price_per_share, "
+        "shares_post_round, ownership_pct_new_investor, ownership_pct_fund_position, "
+        "source_confidence, is_estimate, source_note, created_at, updated_at"
+    )
+    f.write(f"INSERT INTO financing_rounds ({round_columns}) VALUES\n")
+    f.write(",\n".join(
+        "    (" + ", ".join([
+            str(round_id),
+            str(company_id[r["company_name"]]),
+            sql_str(r["round_name"]), str(r["round_order"]), sql_str(r["date_closed"]),
+            sql_str(r["round_status"]), sql_str(r["round_type"]),
+            sql_str(r["amount_raised_usd"]), sql_str(r["pre_money_usd"]), sql_str(r["post_money_usd"]),
+            sql_str(r["price_per_share"]), sql_str(r["shares_post_round"]),
+            sql_str(r["ownership_pct_new_investor"]), sql_str(r["ownership_pct_fund_position"]),
+            sql_str(r["source_confidence"]), str(r["is_estimate"]), sql_str(r["source_note"]),
+            sql_str(NOW), sql_str(NOW),
+        ]) + ")"
+        for round_id, r in enumerate(rounds, start=1)
+    ) + ";\n\n")
+
+    issue_columns = "issue_id, company_name, round_name, issue, resolution, status, logged_at"
+    f.write(f"INSERT INTO data_quality_log ({issue_columns}) VALUES\n")
+    f.write(",\n".join(
+        "    (" + ", ".join([
+            str(issue_id), sql_str(i["company_name"]), sql_str(i["round_name"]),
+            sql_str(i["issue"]), sql_str(i["resolution"]), sql_str(i["status"]), sql_str(NOW),
+        ]) + ")"
+        for issue_id, i in enumerate(log, start=1)
+    ) + ";\n")
+
+# ---------------------------------------------------------------------------
+# Execute portfolio.sql against MySQL
+# ---------------------------------------------------------------------------
+# Run the exact file just written -- not a re-derivation from the Python
+# data -- so the sanity checks and CSV export below are validating the real,
+# shipped artifact (catching e.g. a SQL syntax slip) rather than the
+# pre-SQL Python structures. CLIENT.MULTI_STATEMENTS lets one cursor.execute()
+# run the whole multi-statement script; connecting with no database= (the
+# script itself does DROP DATABASE/CREATE DATABASE/USE) avoids "can't drop
+# the database you're currently connected to" ordering issues.
+conn = pymysql.connect(
+    host=MYSQL_CREDS["host"], port=int(MYSQL_CREDS.get("port", 3306)),
+    user=MYSQL_CREDS["user"], password=MYSQL_CREDS["password"],
+    client_flag=CLIENT.MULTI_STATEMENTS,
+)
+cur = conn.cursor()
+with open(SQL_DUMP_PATH, "r", encoding="utf-8") as f:
+    cur.execute(f.read())
+while cur.nextset():
+    pass
 conn.commit()
 
 # ---------------------------------------------------------------------------
 # Sanity checks
 # ---------------------------------------------------------------------------
+# Basic post-load assertions, printed rather than raised, so a failed check
+# is visible in the run output without stopping the script from finishing
+# the CSV export below. Queried against the MySQL database that was just
+# built (the same one app.py reads), not a separate SQLite copy.
 print("=" * 80)
 print("SANITY CHECKS")
 print("=" * 80)
 
-missing_amount = cur.execute("""
+# Every Closed round should have an amount raised -- a NULL here would mean
+# a real financing event lost its amount somewhere in extraction.
+cur.execute("""
     SELECT c.company_name, fr.round_name FROM financing_rounds fr
     JOIN companies c ON c.company_id = fr.company_id
     WHERE fr.round_status = 'Closed' AND fr.amount_raised_usd IS NULL
-""").fetchall()
+""")
+missing_amount = cur.fetchall()
 print(f"Closed rounds missing amount_raised_usd: {len(missing_amount)}")
 for row in missing_amount:
     print("  FAIL:", row)
 
-bad_ownership = cur.execute("""
+# ownership_pct_new_investor is a fraction of the company (0-100%); anything
+# outside [0, 1] would indicate a unit-conversion or sign error upstream.
+cur.execute("""
     SELECT c.company_name, fr.round_name, fr.ownership_pct_new_investor
     FROM financing_rounds fr
     JOIN companies c ON c.company_id = fr.company_id
     WHERE fr.ownership_pct_new_investor < 0 OR fr.ownership_pct_new_investor > 1.0
-""").fetchall()
+""")
+bad_ownership = cur.fetchall()
 print(f"ownership_pct_new_investor out of [0,1] range: {len(bad_ownership)}")
 for row in bad_ownership:
     print("  FAIL:", row)
@@ -509,20 +677,17 @@ if not missing_amount and not bad_ownership:
     print("All sanity checks passed.")
 
 # ---------------------------------------------------------------------------
-# Export data_quality_log for review
+# Print data_quality_log for review
 # ---------------------------------------------------------------------------
-rows_out = cur.execute("""
+cur.execute("""
     SELECT issue_id, company_name, round_name, issue, resolution, status, logged_at
     FROM data_quality_log ORDER BY issue_id
-""").fetchall()
-with open(LOG_CSV, "w", newline="", encoding="utf-8") as f:
-    writer = csv.writer(f)
-    writer.writerow(["issue_id", "company_name", "round_name", "issue",
-                      "resolution", "status", "logged_at"])
-    writer.writerows(rows_out)
+""")
+rows_out = cur.fetchall()
 
+# Human-readable dump of every logged issue to stdout, for a quick end-of-run review.
 print("\n" + "=" * 80)
-print(f"DATA QUALITY LOG ({len(rows_out)} entries) -> {LOG_CSV}")
+print(f"DATA QUALITY LOG ({len(rows_out)} entries)")
 print("=" * 80)
 for row in rows_out:
     issue_id, comp, rname, issue, resolution, status, logged_at = row
@@ -533,6 +698,6 @@ for row in rows_out:
 open_count = sum(1 for r in rows_out if r[5] == "Open")
 resolved_count = sum(1 for r in rows_out if r[5] == "Resolved")
 print(f"\nTotal: {len(rows_out)}  |  Resolved: {resolved_count}  |  Open: {open_count}")
-print(f"\nDatabase written to {DB_PATH}")
+print(f"\nMySQL database '{MYSQL_CREDS['database']}' rebuilt from {SQL_DUMP_PATH}")
 
 conn.close()

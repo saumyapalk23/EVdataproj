@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+
+# MySQL connection credentials for app.py / build_portfolio_db.py -- never commit this.
+engineventures/.streamlit/secrets.toml
