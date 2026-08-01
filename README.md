@@ -86,8 +86,8 @@ Why this shape:
   reconcile with pre-money + raise, dates can't be in the future for a
   Closed round — are enforced in the app's form validation instead.
 
-## Data issues found (full list in the `data_quality_log` table — also
-baked into `data/portfolio.sql`'s INSERT statements, so it's readable
+## Data issues found 
+(visible in `data/portfolio.sql`'s INSERT statements, so it's readable
 without a database connection)
 
 Resolved with a clear basis:
