@@ -8,8 +8,7 @@ plus a Streamlit app on top of it.
 - App: `engineventures/app.py`
 ## Running it
  
-**1. MySQL credentials.** Create `engineventures/.streamlit/secrets.toml`
-(gitignored — never commit this) with:
+**1. MySQL credentials.** Create `engineventures/.streamlit/secrets.toml` with:
 ```toml
 [mysql]
 host = "localhost"
