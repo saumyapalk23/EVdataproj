@@ -1,160 +1,88 @@
 # EVdataproj
- 
+
 A normalized MySQL portfolio database built from `Portfolio_Data_RAW_practice.xlsx`,
-plus a Streamlit app on top of it.
- 
-- Build script: `engineventures/buildportfolio.py`
-- Schema + data, as a MySQL dump: `engineventures/data/portfolio.sql`
-- App: `engineventures/app.py`
-## Running it
- 
-**1. MySQL credentials.** Create `engineventures/.streamlit/secrets.toml` with:
-```toml
-[mysql]
-host = "localhost"
-port = 3306
-user = "your_mysql_user"
-password = "your_mysql_password"
-database = "portfolio"
-```
- 
-**2. Build/load the database.** Either run the build script (regenerates
-`data/portfolio.sql` from the raw xlsx and executes it against MySQL):
-```
-cd engineventures
-pip install streamlit pandas openpyxl pymysql
-python buildportfolio.py
-```
-or, if you just want the already-built data without rerunning extraction,
-load the SQL dump directly — via **DataGrip** (open a MySQL data source,
-open `data/portfolio.sql` as a query console, run it) or from a terminal:
-```
-mysql -u your_mysql_user -p < engineventures/data/portfolio.sql
-```
-The dump starts with `DROP DATABASE IF EXISTS portfolio; CREATE DATABASE portfolio;`,
-so it's always a clean rebuild — safe to rerun, but it will wipe anything
-added through the app since the last build.
- 
-**3. Run the app:**
-```
-streamlit run app.py
-```
- 
-I used DataGrip mainly to poke around the schema directly, spot-check rows
-against the raw xlsx while cleaning, and re-run the dump by hand when
-iterating on the build script without going through Streamlit. I also wanted to get a proper GUI or visual representation of my schema, and DataGrip is often crucial to doing that!
- 
+plus a Streamlit app on top of it. Build script: `engineventures/buildportfolio.py`.
+Schema + data dump: `engineventures/data/portfolio.sql`. App: `engineventures/app.py`.
+
+**Running it:** put MySQL credentials in `engineventures/.streamlit/secrets.toml`
+(see keys in `buildportfolio.py`/`app.py`), then either run
+`python buildportfolio.py` from `engineventures/` to rebuild the dump from the raw
+xlsx and load it, or load `data/portfolio.sql` directly (`mysql -u user -p < data/portfolio.sql`,
+or via DataGrip). Then `streamlit run app.py`. The dump drops and recreates the
+`portfolio` database, so it's a clean, repeatable rebuild.
+
 ## Schema
- 
-Three tables in the `portfolio` MySQL database:
- 
-- **companies** — `company_id`, `company_name`.
-- **financing_rounds** — one row per round: amount raised, pre/post-money,
-  price/share, shares outstanding, `round_status` (`Closed`/`Planned`),
-  `round_type` (`SAFE`/`Convertible Note`/`Priced Equity`), plus
-  `source_confidence` and `is_estimate` flags and a free-text `source_note`.
-- **data_quality_log** — every judgment call made while cleaning the data,
-  tagged `Resolved` or `Open`, with the issue and how (or whether) it was
-  resolved. Links to `companies`/`financing_rounds` via nullable
-  `company_id`/`round_id` foreign keys (kept alongside the original
-  `company_name`/`round_name` text columns for display) — see "Data issues
-  found" below.
+
+Three tables in `portfolio`: **companies** (`company_id`, `company_name`);
+**financing_rounds**, one row per round — amount raised, pre/post-money,
+price/share, shares outstanding, `round_status` (Closed/Planned), `round_type`
+(SAFE/Convertible Note/Priced Equity), plus `source_confidence`/`is_estimate`
+flags and a `source_note`; and **data_quality_log**, every cleaning judgment
+call, tagged Resolved/Open, linked to companies/rounds via nullable
+`company_id`/`round_id` FKs (text columns kept alongside for display).
+
 Why this shape:
-- **One row per round, not one row per company.** The raw sheets already
-  had this granularity; keeping it lets the app model dilution round-by-round
-  instead of just showing a current snapshot.
-- **`round_status` and `round_type` as separate fields.** SAFEs and
-  convertible notes don't have a pre-money valuation, and rounds like
-  Nimbus's Series B are priced-on-paper but not legally closed. Collapsing
-  these into one status field would have hidden that distinction.
-- **`ownership_pct_new_investor` is recomputed for every row** as
-  `amount_raised / post_money`, rather than trusting each sheet's own
-  Ownership% column. Those columns used inconsistent (and in Halcyon's case,
-  broken) formulas — see Data Issues below. Recomputing gives one comparable
-  number across all five companies.
-- **`ownership_pct_fund_position`** is a separate column, used only for
-  Verdant Bio, which is the one sheet that appeared to track Engine's own
-  cumulative diluting stake rather than each round's new-money %. Kept
-  separate rather than merged so the two different meanings don't get
-  conflated.
-- **`source_confidence` / `is_estimate` flags** exist so the app can visibly
-  warn a user when they're looking at a row built on an unresolved conflict,
-  instead of presenting every number with equal confidence.
-- **CHECK constraints in the schema itself** (`round_status`, `round_type`,
-  `source_confidence`, `is_estimate`) enforce the allowed vocabulary at the
-  database layer; other rules — amounts must be positive, post-money should
-  reconcile with pre-money + raise, dates can't be in the future for a
-  Closed round — are enforced in the app's form validation instead.
-## Data issues found 
-(visible in `data/portfolio.sql`'s INSERT statements, so it's readable
-without a database connection)
- 
+- **One row per round**, matching the raw sheets' granularity, so the app can
+  model dilution round-by-round instead of a single current snapshot.
+- **`round_status`/`round_type` split out** rather than one status field —
+  SAFEs/notes have no pre-money valuation, and some rounds (e.g. Nimbus Series B)
+  are priced on paper but not legally closed.
+- **`ownership_pct_new_investor` is recomputed** as `amount_raised / post_money`
+  for every row instead of trusting each sheet's own Ownership% column, which
+  used inconsistent (and in Halcyon's case, broken) formulas.
+- **`ownership_pct_fund_position`** is a separate column used only for Verdant
+  Bio, the one sheet tracking Engine's own cumulative stake rather than each
+  round's new-money % — kept separate so the two meanings aren't conflated.
+- **`source_confidence`/`is_estimate` flags** let the app warn when a row rests
+  on an unresolved conflict instead of showing every number with equal confidence.
+- **CHECK constraints** enforce allowed vocabulary at the DB layer; numeric/date
+  sanity rules (positive amounts, pre+raise≈post, no future dates on Closed
+  rounds) live in the app's form validation instead.
+
+## Data issues found
+
+(also visible in `data/portfolio.sql`'s INSERT statements)
+
 Resolved with a clear basis:
-- **Ridgeline Materials** was in $000s per its own footnote — all dollar
-  fields multiplied by 1,000.
-- **Ridgeline Series B** amount raised was entered as -22,000 — corrected to
-  positive; confirmed as a typo by both the sheet footnote and the Slack notes.
-- **Verdant Bio**'s sheet stacked two scenarios ("continue pro-rata" and
-  "pause after Series B") in one tab. Only the base-case "continue" scenario
-  was loaded as history; the "pause" branch is a hypothetical, not something
-  that happened, so it was excluded rather than merged in.
-- **Nimbus Series B** and **Verdant Series C** are priced on paper but not
-  closed (Nimbus: "TBD 2027" / IC guidance only; Verdant: notes say the
-  close date slipped a quarter) — both set to `round_status = Planned`
-  with no `date_closed`, rather than treated as confirmed rounds.
-- **`data_quality_log` only linked to companies/rounds by free-text
-  `company_name`/`round_name`**, so it showed up disconnected in DataGrip's
-  ER diagram and a company/round rename would have silently broken the
-  association. Fixed by adding nullable `company_id`/`round_id` foreign keys
-  (`buildportfolio.py`'s `add_issue()` now takes an explicit `round_id`
-  from the just-inserted round, and looks up `company_id` from the same
-  dict used elsewhere, rather than matching on names after the fact). The
-  text columns are kept for display, and both FKs are nullable since
-  dataset-wide "All Companies" entries have no single company/round to
-  point to.
+- Ridgeline Materials was in $000s per its own footnote — dollar fields ×1,000.
+- Ridgeline Series B's amount raised was entered as -22,000 — corrected to
+  positive, confirmed as a typo by the sheet footnote and Slack notes.
+- Verdant Bio's sheet stacked two scenarios in one tab; only the base-case
+  "continue pro-rata" history was loaded, the hypothetical "pause" branch excluded.
+- Nimbus Series B and Verdant Series C are priced on paper but not closed —
+  set to `round_status = Planned` with no `date_closed`.
+- `data_quality_log` originally linked to companies/rounds only by free-text
+  name, so a rename would silently break the association — added nullable
+  `company_id`/`round_id` FKs, populated at insert time instead of matched by
+  name after the fact.
+
 Left open (flagged, not guessed):
-- **Nimbus "Series A-2" vs "Series A2"**, both dated 5/22/2023 with different
-  amounts ($4.0M vs $4.5M raised). Nothing in the workbook says which is
-  right, or whether they're two real tranches. Both rows are kept, each
-  flagged `needs_review`, cross-referencing the other.
-- **Halcyon Series A**, two rows for the same round — one with a broken
-  `#DIV/0!` share count, one complete. Kept the complete ($9.5M / 15.2M
-  shares) row and flagged it, but the sheet and Slack notes both say this
-  still needs finance to confirm 9.0M vs 9.5M.
-- **Fathom Pre-Seed**: tracker shows $750K on 1/10/22; a Slack note mentions
-  an unconfirmed "$1.2M SAFE" on the same date, possibly the same event.
-  Kept the tracker's $750K rather than overwrite it with an unconfirmed note.
+- Nimbus "Series A-2" vs "Series A2", same date, different amounts ($4.0M vs
+  $4.5M) — nothing in the workbook resolves it, so both rows are kept and
+  cross-flagged `needs_review`.
+- Halcyon Series A has two rows, one with a broken `#DIV/0!` share count — kept
+  the complete ($9.5M / 15.2M shares) row, flagged, since Slack notes say
+  finance still needs to confirm 9.0M vs 9.5M.
+- Fathom Pre-Seed: tracker shows $750K on 1/10/22; an unconfirmed Slack note
+  mentions a possibly-same-event "$1.2M SAFE." Kept the tracker's $750K rather
+  than overwrite it with an unconfirmed figure.
+
 ## What I'd do next with more time
- 
+
 - Reconcile the three open items above with the deal team instead of leaving
   them flagged indefinitely.
 - Model liquidation preferences/participation and an option-pool refresh in
-  the exit scenario — right now both the future-round and exit tools use a
-  straight-line ownership % × exit value, which the app calls out in-app but
-  is a real simplification.
-- Track Engine's actual dollars invested and dates per round (not just each
-  round's total), which would let the exit tab show a real IRR on Engine's
-  cash flows instead of an implied valuation CAGR.
-- Add a proper `ownership_pct_fund_position` for all five companies rather
-  than just Verdant, if/when Engine's actual check size per round is
-  available — right now the other four companies approximate Engine's stake
-  using the new-investor % as a stand-in, which the app flags but isn't ideal.
-- Editing an existing round in the app currently doesn't clear/update
-  `source_confidence` or `is_estimate` on save — a flagged row stays flagged
-  even after the edit resolves the underlying issue. Worth fixing.
-- The Add/Edit Round form's input validation could handle more edge cases —
-  e.g. very large dollar amounts (overflow/precision), leading/trailing
-  whitespace in text fields, and other malformed input that isn't exercised
-  by the current dataset.
-## AI assistant use
- 
-I used Claude Code throughout this project. I defined the schema decisions,
-the data issues to resolve (and which ones to leave open), and the
-functionality I wanted in the interface — Claude Code then generated the
-extraction script, database build, and Streamlit app to match. I reviewed
-its output against the raw source data to confirm nothing was invented or
-mis-transcribed, and directed the data-quality judgment calls myself rather
-than letting the tool decide how to handle conflicts or ambiguity.
- 
+  the exit scenario — currently a straight-line ownership % × exit value.
+- Track Engine's actual dollars invested and dates per round, to show real
+  IRR on Engine's cash flows instead of an implied valuation CAGR.
+- Extend `ownership_pct_fund_position` to all five companies once Engine's
+  actual check size per round is available, rather than approximating it from
+  new-investor % for four of them.
+- Fix the Add/Edit Round form so saving an edit clears/updates
+  `source_confidence`/`is_estimate` instead of leaving a resolved row flagged.
+- Harden form validation for edge cases not exercised by the current dataset
+  (very large amounts, stray whitespace, other malformed input).
 
+## AI assistant use
+I used Claude Code throughout this project. I defined the schema decisions, the data issues to resolve (and which ones to leave open), and the functionality I wanted in the interface — Claude Code then generated the extraction script, database build, and Streamlit app to match. I reviewed its output against the raw source data to confirm nothing was invented or mis-transcribed, and directed the data-quality judgment calls myself rather than letting the tool decide how to handle conflicts or ambiguity.
 
