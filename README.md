@@ -1,14 +1,13 @@
 # EVdataproj
-
+ 
 A normalized MySQL portfolio database built from `Portfolio_Data_RAW_practice.xlsx`,
 plus a Streamlit app on top of it.
-
-- Build script: `engineventures/build_portfolio_db.py`
+ 
+- Build script: `engineventures/buildportfolio.py`
 - Schema + data, as a MySQL dump: `engineventures/data/portfolio.sql`
 - App: `engineventures/app.py`
-
 ## Running it
-
+ 
 **1. MySQL credentials.** Create `engineventures/.streamlit/secrets.toml`
 (gitignored — never commit this) with:
 ```toml
@@ -19,13 +18,13 @@ user = "your_mysql_user"
 password = "your_mysql_password"
 database = "portfolio"
 ```
-
+ 
 **2. Build/load the database.** Either run the build script (regenerates
 `data/portfolio.sql` from the raw xlsx and executes it against MySQL):
 ```
 cd engineventures
 pip install streamlit pandas openpyxl pymysql
-python build_portfolio_db.py
+python buildportfolio.py
 ```
 or, if you just want the already-built data without rerunning extraction,
 load the SQL dump directly — via **DataGrip** (open a MySQL data source,
@@ -36,20 +35,20 @@ mysql -u your_mysql_user -p < engineventures/data/portfolio.sql
 The dump starts with `DROP DATABASE IF EXISTS portfolio; CREATE DATABASE portfolio;`,
 so it's always a clean rebuild — safe to rerun, but it will wipe anything
 added through the app since the last build.
-
+ 
 **3. Run the app:**
 ```
 streamlit run app.py
 ```
-
+ 
 I used DataGrip mainly to poke around the schema directly, spot-check rows
 against the raw xlsx while cleaning, and re-run the dump by hand when
 iterating on the build script without going through Streamlit. I also wanted to get a proper GUI or visual representation of my schema, and DataGrip is often crucial to doing that!
  
 ## Schema
-
+ 
 Three tables in the `portfolio` MySQL database:
-
+ 
 - **companies** — `company_id`, `company_name`.
 - **financing_rounds** — one row per round: amount raised, pre/post-money,
   price/share, shares outstanding, `round_status` (`Closed`/`Planned`),
@@ -61,7 +60,6 @@ Three tables in the `portfolio` MySQL database:
   `company_id`/`round_id` foreign keys (kept alongside the original
   `company_name`/`round_name` text columns for display) — see "Data issues
   found" below.
-
 Why this shape:
 - **One row per round, not one row per company.** The raw sheets already
   had this granularity; keeping it lets the app model dilution round-by-round
@@ -88,11 +86,10 @@ Why this shape:
   database layer; other rules — amounts must be positive, post-money should
   reconcile with pre-money + raise, dates can't be in the future for a
   Closed round — are enforced in the app's form validation instead.
-
 ## Data issues found 
 (visible in `data/portfolio.sql`'s INSERT statements, so it's readable
 without a database connection)
-
+ 
 Resolved with a clear basis:
 - **Ridgeline Materials** was in $000s per its own footnote — all dollar
   fields multiplied by 1,000.
@@ -110,13 +107,12 @@ Resolved with a clear basis:
   `company_name`/`round_name`**, so it showed up disconnected in DataGrip's
   ER diagram and a company/round rename would have silently broken the
   association. Fixed by adding nullable `company_id`/`round_id` foreign keys
-  (`build_portfolio_db.py`'s `add_issue()` now takes an explicit `round_id`
+  (`buildportfolio.py`'s `add_issue()` now takes an explicit `round_id`
   from the just-inserted round, and looks up `company_id` from the same
   dict used elsewhere, rather than matching on names after the fact). The
   text columns are kept for display, and both FKs are nullable since
   dataset-wide "All Companies" entries have no single company/round to
   point to.
-
 Left open (flagged, not guessed):
 - **Nimbus "Series A-2" vs "Series A2"**, both dated 5/22/2023 with different
   amounts ($4.0M vs $4.5M raised). Nothing in the workbook says which is
@@ -129,9 +125,8 @@ Left open (flagged, not guessed):
 - **Fathom Pre-Seed**: tracker shows $750K on 1/10/22; a Slack note mentions
   an unconfirmed "$1.2M SAFE" on the same date, possibly the same event.
   Kept the tracker's $750K rather than overwrite it with an unconfirmed note.
-
 ## What I'd do next with more time
-
+ 
 - Reconcile the three open items above with the deal team instead of leaving
   them flagged indefinitely.
 - Model liquidation preferences/participation and an option-pool refresh in
@@ -152,9 +147,8 @@ Left open (flagged, not guessed):
   e.g. very large dollar amounts (overflow/precision), leading/trailing
   whitespace in text fields, and other malformed input that isn't exercised
   by the current dataset.
-
 ## AI assistant use
-
+ 
 I used Claude Code throughout this project. I defined the schema decisions,
 the data issues to resolve (and which ones to leave open), and the
 functionality I wanted in the interface — Claude Code then generated the
@@ -162,3 +156,6 @@ extraction script, database build, and Streamlit app to match. I reviewed
 its output against the raw source data to confirm nothing was invented or
 mis-transcribed, and directed the data-quality judgment calls myself rather
 than letting the tool decide how to handle conflicts or ambiguity.
+ 
+
+
