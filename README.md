@@ -83,6 +83,6 @@ Left open (flagged, not guessed):
 - Harden form validation for edge cases not exercised by the current dataset
   (very large amounts, stray whitespace, other malformed input).
 
-## AI assistant use
-I used Claude Code throughout this project. I defined the schema decisions, the data issues to resolve (and which ones to leave open), and the functionality I wanted in the interface — Claude Code then generated the extraction script, database build, and Streamlit app to match. I reviewed its output against the raw source data to confirm nothing was invented or mis-transcribed, and directed the data-quality judgment calls myself rather than letting the tool decide how to handle conflicts or ambiguity.
+## AI assistant / general tool use
+I used Claude Code throughout this project. I defined the schema decisions, the data issues to resolve (and which ones to leave open), and the functionality I wanted in the interface — Claude Code then generated the extraction script, database build, and Streamlit app to match. I reviewed its output against the raw source data to confirm nothing was invented or mis-transcribed, and directed the data-quality judgment calls myself rather than letting the tool decide how to handle conflicts or ambiguity. I also used VSCode for all my files and DataGrip for a visual and clear representation to ensure my schema was looking the way I intended.
 
