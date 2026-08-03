@@ -67,6 +67,17 @@ Left open (flagged, not guessed):
   mentions a possibly-same-event "$1.2M SAFE." Kept the tracker's $750K rather
   than overwrite it with an unconfirmed figure.
 
+## Data Computation & NULL Handling
+
+`buildportfolio.py` backfills a handful of fields that are mathematically
+derivable from other columns on the same row (or a company's own prior
+rounds), so the app doesn't show blank cells that could have been computed.
+This runs as its own pass, after every company's rows are extracted, so a
+later round can depend on an earlier round's numbers. 
+
+Ex: **Shares Post known, Price/Share missing**: `Price-Share = Post-Money /
+   Shares Post`.
+
 ## What I'd do next with more time
 
 - Reconcile the three open items above with the deal team instead of leaving

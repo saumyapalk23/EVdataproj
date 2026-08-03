@@ -14,6 +14,7 @@ directly; nothing in this pipeline uses SQLite.
 
 import os
 import tomllib
+from collections import defaultdict
 from datetime import datetime
 
 import openpyxl
@@ -201,7 +202,9 @@ for rec, order in zip(raw, orders):
                    "needs_review", 1,
                    "IC guidance only; unpriced as of last IC update per sheet "
                    "footnote and Portfolio Notes (~$135M post, nothing signed). "
-                   "price_per_share/shares_post_round/ownership left blank.")
+                   "price_per_share/shares_post_round/ownership_pct_new_investor "
+                   "left blank at extraction, later back-computed as "
+                   "projected/unconfirmed estimates -- see data_quality_log.")
     elif name == "Series A2":  # duplicate/conflicting 5/22/2023 rows
         # Two rows for the same date/round with different dollar figures --
         # both are inserted (sharing round_order) since there's no basis in
@@ -472,8 +475,11 @@ for rec, order in zip(raw, orders):
                    amount, pre, post, None, None, pct(amount, post), None,
                    "confirmed", 0,
                    "shares_post_round unavailable in source (#DIV/0!); left "
-                   "NULL rather than estimated. Amount/pre/post-money "
-                   "figures reliable independent of the broken share count.")
+                   "NULL at extraction rather than estimated. Amount/pre/"
+                   "post-money figures reliable independent of the broken "
+                   "share count. price_per_share/shares_post_round later "
+                   "back-computed by chaining from Series A's confirmed "
+                   "Shares Post -- see data_quality_log.")
     else:
         add_round("Halcyon Health", name, order, date_closed, "Closed", rtype,
                    amount, pre, post, None, shares, pct(amount, post), None,
@@ -523,6 +529,170 @@ add_issue("All Companies", None,
           "relevant data_quality_log entries above as context rather than "
           "inserted as rows.",
           "Resolved")
+
+# ---------------------------------------------------------------------------
+# Backfill computable fields (Price/Share, Shares Post, Own% New Inv.)
+# ---------------------------------------------------------------------------
+# One pass over every company's already-inserted rows, walking each
+# company's rounds chronologically (round_order) since later rounds' Rule 4
+# depends on an earlier round's confirmed Shares Post. See README "Data
+# Computation & NULL Handling" for the plain-language version of rules 1-9
+# implemented below. Rule 1 (SAFE/Note rows left NULL) needs no code here --
+# extraction never populates pre/post/price/shares for those rows in the
+# first place.
+
+def backfill_computed_fields():
+    by_company = defaultdict(list)
+    for idx, r in enumerate(rounds):
+        by_company[r["company_name"]].append(idx)
+
+    for company, idxs in by_company.items():
+        # --- Rule 8: flag same-round_order rows with differing terms; never
+        # compute onto them, and don't re-flag a conflict this file's own
+        # per-company block already flagged (e.g. Nimbus Series A2). -------
+        order_groups = defaultdict(list)
+        for idx in idxs:
+            order_groups[rounds[idx]["round_order"]].append(idx)
+        conflict_idxs = set()
+        compare_keys = ("amount_raised_usd", "pre_money_usd", "post_money_usd",
+                         "price_per_share", "shares_post_round")
+        for order, group in order_groups.items():
+            if len(group) < 2:
+                continue
+            first = rounds[group[0]]
+            if any(rounds[i][k] != first[k] for i in group[1:] for k in compare_keys):
+                conflict_idxs.update(group)
+                if not all(rounds[i]["source_confidence"] == "needs_review" for i in group):
+                    add_issue(company, first["round_name"],
+                        f"Rule 8 duplicate scan: {len(group)} rows share "
+                        f"round_order={order} ('{first['round_name']}') with "
+                        f"differing terms.",
+                        "Left all rows as-is; no auto-computed fields applied "
+                        "to this round_order -- flagged for manual resolution.",
+                        "Open", round_id=group[0] + 1)
+
+        # --- Rules 2-7, walked chronologically ----------------------------
+        confirmed_shares = None  # most recent known shares_post_round so far
+        sanity_fail_idxs = set()
+        for idx in idxs:
+            r = rounds[idx]
+            round_id = idx + 1
+            filled = []
+
+            if idx in conflict_idxs:
+                if r["shares_post_round"] is not None:
+                    confirmed_shares = r["shares_post_round"]
+                continue
+
+            if r["round_type"] == "Priced Equity":
+                pre, post = r["pre_money_usd"], r["post_money_usd"]
+                price, shares = r["price_per_share"], r["shares_post_round"]
+                amount = r["amount_raised_usd"]
+
+                if price is not None and shares is None and post is not None:
+                    # Rule 2: Shares Post = Post-Money / Price-Share
+                    r["shares_post_round"] = round(post / price)
+                    filled.append("shares_post_round (Rule 2)")
+
+                elif shares is not None and price is None and post is not None:
+                    # Rule 3: Price-Share = Post-Money / Shares Post
+                    r["price_per_share"] = round(post / shares, 2)
+                    filled.append("price_per_share (Rule 3)")
+
+                elif price is None and shares is None:
+                    # Rule 4: chain off the prior round's confirmed Shares Post.
+                    if (confirmed_shares is not None and pre is not None
+                            and post is not None and amount is not None):
+                        price_unrounded = pre / confirmed_shares
+                        shares_unrounded = post / price_unrounded
+                        new_shares_unrounded = amount / price_unrounded
+                        reconciled = confirmed_shares + new_shares_unrounded
+                        pct_diff = abs(reconciled - shares_unrounded) / shares_unrounded
+                        if pct_diff <= 0.01:
+                            r["price_per_share"] = round(price_unrounded, 2)
+                            r["shares_post_round"] = round(shares_unrounded)
+                            filled.append(
+                                f"price_per_share & shares_post_round (Rule 4, "
+                                f"chained from prior Shares Post = "
+                                f"{confirmed_shares:,.0f})")
+                        else:
+                            sanity_fail_idxs.add(idx)
+                            add_issue(company, r["round_name"],
+                                f"Rule 4 sanity check failed: chaining Price/Share "
+                                f"from Pre-Money / prior Shares Post "
+                                f"({confirmed_shares:,.0f}) implies "
+                                f"{shares_unrounded:,.0f} Shares Post, but prior "
+                                f"Shares Post + (Amount Raised / Price/Share) = "
+                                f"{reconciled:,.0f} -- a {pct_diff:.2%} mismatch, "
+                                f"over the 1% tolerance.",
+                                "Left price_per_share and shares_post_round NULL "
+                                "rather than guessing; flagged for manual review.",
+                                "Open", round_id=round_id)
+                    # else Rule 4e: no prior confirmed Shares Post to chain
+                    # from -- leave both NULL, no per-row flag (expected gap,
+                    # covered by the company-level summary note below).
+
+            if r["shares_post_round"] is not None:
+                confirmed_shares = r["shares_post_round"]
+
+            # --- Rule 5: Own% (New Inv.) = Amount Raised / Post-Money ------
+            amount, post = r["amount_raised_usd"], r["post_money_usd"]
+            if amount is not None and post is not None:
+                computed_own = amount / post
+                if r["ownership_pct_new_investor"] is None:
+                    r["ownership_pct_new_investor"] = computed_own
+                    filled.append("ownership_pct_new_investor (Rule 5)")
+                elif abs(computed_own - r["ownership_pct_new_investor"]) * 100 > 0.5:
+                    add_issue(company, r["round_name"],
+                        f"Rule 5 conflict: Amount Raised / Post-Money "
+                        f"({computed_own:.2%}) differs from the stored "
+                        f"ownership_pct_new_investor "
+                        f"({r['ownership_pct_new_investor']:.2%}) by more than "
+                        f"0.5 percentage points.",
+                        "Did not overwrite the existing stored value; flagged "
+                        "for manual reconciliation instead.",
+                        "Open", round_id=round_id)
+
+            # --- Rule 7: unclosed rounds -> anything filled here is a
+            # projection, not a confirmed fact. -----------------------------
+            if filled and r["round_status"] == "Planned":
+                r["source_confidence"] = "needs_review"
+                r["is_estimate"] = 1
+
+            if filled:
+                label = ("projected/unconfirmed, round is Planned and not yet "
+                          "closed" if r["round_status"] == "Planned"
+                          else "computed from this closed round's own figures")
+                add_issue(company, r["round_name"],
+                    f"Backfill: {', '.join(filled)} had no source value.",
+                    f"Auto-computed per the documented rules ({label}); see "
+                    f"README 'Data Computation & NULL Handling' for the "
+                    f"formulas used.",
+                    "Resolved", round_id=round_id)
+
+        # --- Company-level summary for the Rule 4e "expected gap" case: a
+        # priced round with no fillable prior Shares Post anywhere in the
+        # company's history (so nothing above ever flagged or filled it). --
+        still_missing = [
+            rounds[i]["round_name"] for i in idxs
+            if i not in conflict_idxs and i not in sanity_fail_idxs
+            and rounds[i]["round_type"] == "Priced Equity"
+            and rounds[i]["price_per_share"] is None
+            and rounds[i]["shares_post_round"] is None
+        ]
+        if still_missing:
+            add_issue(company, None,
+                f"Backfill (Rule 4e): {', '.join(still_missing)} priced "
+                f"round(s) have no Price/Share or Shares Post recorded, and "
+                f"no earlier round for {company} has a confirmed Shares Post "
+                f"to chain a per-share price from.",
+                "Left NULL rather than estimated; Price/Share and Shares "
+                "Post need either a direct source value or a prior round's "
+                "confirmed Shares Post to derive from (see README).",
+                "Resolved")
+
+
+backfill_computed_fields()
 
 # ---------------------------------------------------------------------------
 # Write MySQL-flavored SQL dump (for DataGrip, and executed against MySQL below)
