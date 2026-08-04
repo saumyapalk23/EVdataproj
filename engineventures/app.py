@@ -2,7 +2,7 @@
 Streamlit app on top of the MySQL "portfolio" database (companies /
 financing_rounds / data_quality_log; see data/portfolio.sql for the schema).
 Tab 1 (Add / Update Round) is implemented; Tabs 2-3 (Model Future Round,
-Exit Assumptions) are stubbed pending review of Tab 1.
+Exit Assumptions)
 """
 
 from datetime import date, datetime
