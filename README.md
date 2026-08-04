@@ -82,16 +82,13 @@ Ex: **Shares Post known, Price/Share missing**: `Price-Share = Post-Money /
 
 - Reconcile the three open items above with the deal team instead of leaving
   them flagged indefinitely.
-- Model liquidation preferences/participation and an option-pool refresh in
-  the exit scenario — currently a straight-line ownership % × exit value.
+- Model liquidation preferences (more nuanced money distribution and order) currently a straight-line ownership % × exit value.
 - Track Engine's actual dollars invested and dates per round, to show real
   IRR on Engine's cash flows instead of an implied valuation CAGR.
-- Extend `ownership_pct_fund_position` to all five companies once Engine's
-  actual check size per round is available, rather than approximating it from
-  new-investor % for four of them.
+- Extend `ownership_pct_fund_position` to all five companies (apart from Verdant) once Engine's actual check size per round is available
 - Fix the Add/Edit Round form so saving an edit clears/updates
   `source_confidence`/`is_estimate` instead of leaving a resolved row flagged.
-- Harden form validation for edge cases not exercised by the current dataset
+- Include more edge cases!! - not exercised by the current dataset
   (very large amounts, stray whitespace, other malformed input).
 
 ## AI assistant / general tool use
