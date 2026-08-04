@@ -4,10 +4,18 @@ MySQL portfolio database built from `Portfolio_Data_RAW_practice.xlsx`, plus a
 Streamlit app on top. Build: `engineventures/buildportfolio.py`. Schema + data:
 `engineventures/data/portfolio.sql`. App: `engineventures/app.py`.
 
-**Running it:** put MySQL credentials in `engineventures/.streamlit/secrets.toml`
-(keys shown in `buildportfolio.py`/`app.py`), then load `data/portfolio.sql`
-(`mysql -u user -p < data/portfolio.sql`, or via DataGrip) â€” or run
-`python buildportfolio.py` to rebuild it from the raw xlsx. Then `streamlit run app.py`.
+**Running it:**
+
+1. Copy `engineventures/.streamlit/secrets.toml.example` to
+   `engineventures/.streamlit/secrets.toml`.
+2. Fill in real MySQL credentials (`host`, `port`, `user`, `password`,
+   `database`) in that file. It's gitignored and won't be committed.
+3. Load the schema + data — either:
+   - Run `python buildportfolio.py` from `engineventures/` to rebuild the
+     database from the raw xlsx, or
+   - Load `data/portfolio.sql` directly (`mysql -u user -p < data/portfolio.sql`,
+     or open it in DataGrip).
+4. Run `streamlit run app.py` from `engineventures/`.
 
 ## Schema
 
