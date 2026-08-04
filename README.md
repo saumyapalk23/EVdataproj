@@ -32,7 +32,7 @@ Why this shape:
   used inconsistent (and in Halcyon's case, broken) formulas.
 - **`ownership_pct_fund_position`** is a separate column used only for Verdant
   Bio, the one sheet tracking Engine's own cumulative stake rather than each
-  round's new-money % — kept separate so the two meanings aren't conflated.
+  round's new-money %; kept separate because the data does't match the new_investor formula, so I attributed it to being a representation of Engine Venture's ownership of the company.
 - **`source_confidence`/`is_estimate` flags** let the app warn when a row rests
   on an unresolved conflict instead of showing every number with equal confidence.
 - **CHECK constraints** enforce allowed vocabulary at the DB layer; numeric/date
