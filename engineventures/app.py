@@ -620,20 +620,8 @@ def tab_model_future_round(conn, company_id, company_name):
             "only the new investor's ownership is shown above."
         )
 
-    st.caption(
-        "Dilution model: existing holders (including Engine) are diluted by "
-        "pre-money / post-money; this assumes no other changes to the cap "
-        "table (e.g. no option pool top-up) beyond the new investor's shares."
-    )
-
     st.divider()
     st.markdown("#### Exit scenario")
-    st.caption(
-        "⚠️ Simplifying assumption: this is a straight-line ownership% × exit "
-        "value calculation only. It does **not** model liquidation preferences, "
-        "participation rights, option pool refreshes, or a waterfall — actual "
-        "proceeds at exit, especially for preferred stock, would differ."
-    )
 
     # Default exit value is an arbitrary 3x placeholder multiple on the
     # resulting post-money — purely a starting point for the user to adjust.
@@ -663,7 +651,7 @@ def tab_model_future_round(conn, company_id, company_name):
 # --------------------------------------------------------------------- #
 
 def tab_exit_assumptions(conn):
-    """Fixed walkthrough tab modeling an exit scenario for Fathom Analytics
+    """Fixed walkthrough tab modeling an exit scenario for Analytics
     specifically, independent of whichever company is selected in the sidebar.
     Only rendered when Fathom Analytics is the selected company (see main())."""
     st.subheader("Exit Assumptions — Fathom Analytics")
@@ -687,56 +675,29 @@ def tab_exit_assumptions(conn):
     last_post_money = float(latest["post_money_usd"])
     last_round_name = latest["round_name"]
     last_date = latest["date_closed"]
-    last_year = datetime.strptime(last_date, "%Y-%m-%d").year if last_date else date.today().year
 
     # Only "Open" data-quality issues matter here — resolved ones don't need
     # a caveat in the assumptions writeup below.
     open_issues = load_quality_log(conn, fathom_id)
     open_issues = open_issues[open_issues["status"] == "Open"]
 
-    # Explanation of how Engine's ownership baseline was derived, phrased
-    # differently depending on whether it's a tracked figure or an approximation.
-    engine_note = (
-        "tracked directly as a fund position."
-        if not engine_is_approx else
-        "**not** separately tracked for Fathom — approximated using the "
-        f"{last_round_name}'s new-investor % ({pct_fmt(engine_pct) if engine_pct else 'n/a'}) "
-        "as a stand-in for Engine's cumulative ownership. This can overstate or "
-        "understate the real figure if Engine's actual investment differed from "
-        "a pro-rata new-investor position across all rounds."
-    )
+    # Default exit valuation shown here purely for the writeup below; the
+    # actual (adjustable) figure is computed again from the widgets further
+    # down via `computed_exit_valuation`.
+    default_exit_valuation = last_post_money * 3.0
 
-    # Long-form writeup documenting every assumption behind the numbers below,
-    # so the reasoning is transparent rather than a black-box calculation.
+    # Writeup documenting the assumptions behind the numbers below, so the
+    # reasoning is transparent rather than a black-box calculation.
     with st.expander("Assumptions & reasoning (read before trusting the numbers below)", expanded=True):
         st.markdown(
             f"""
-- **Baseline valuation**: Fathom's last priced round is **{last_round_name}**,
-  closed {last_date}, at a **{money_fmt(last_post_money)} post-money**. That's
-  the anchor for the exit scenario below.
-- **Why a valuation step-up multiple, not a revenue multiple**: this dataset
-  tracks financing rounds only — there's no ARR/revenue figure for Fathom to
-  apply a "4x revenue" style multiple to. The exit scenario is instead framed
-  as a **step-up multiple on the last post-money valuation**, a coarser but
-  honestly-available basis given what's actually in the tracker.
-- **Default assumed exit multiple: 3.0x** the last post-money. Reasoning: a
-  3-5x valuation step-up from a Series B to an eventual exit (strategic
-  acquisition or IPO) is a commonly-cited rough benchmark for growth-stage
-  SaaS/data-analytics companies that continue to scale. 3.0x is picked as a
-  conservative point in that range — it is not a forecast specific to Fathom.
-- **Default assumed timeline: 4 years** from the last round ({last_year} →
-  {last_year + 4}). Reasoning: 4-6 years from a Series B to strategic
-  exit/IPO is a typical hold period cited for venture-backed SaaS companies;
-  4 years is the low end of that range.
-- **Engine's ownership stake** is {engine_note}
-- **Return calculation is straight-line only**: ownership % × exit
-  valuation. No liquidation preference, participation rights, option pool
-  refresh, or transaction costs/carry are modeled.
-- **No IRR on actual cash flows**: Engine's real investment amount/timing per
-  round isn't tracked separately from each round's total, so we show an
-  implied **valuation compound annual growth rate** (how fast Fathom's valuation would need to
-  compound to hit the assumed exit number) rather than a true IRR on Engine's
-  cash-in/cash-out.
+- **Starting point**: Fathom's last funding round ({last_round_name},
+  {last_date}) valued the company at {money_fmt(last_post_money)} (baseline).
+- **Exit assumption**: we're guessing the company could be worth 3x that
+  ({money_fmt(default_exit_valuation)}) in 4 years — a rough & conservative benchmark.
+- **Engine's stake**: we don't have Engine's actual ownership tracked, so we
+  use {last_round_name}'s new-investor % ({pct_fmt(engine_pct) if engine_pct else 'n/a'}) as a stand-in.
+- **Return math is**: ownership % × exit value.
 """
             # Append an extra bullet noting open data-quality issues, but only
             # if there are any — otherwise this evaluates to an empty string.
